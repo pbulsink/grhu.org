@@ -26,10 +26,10 @@
               </li>
               <li class="divider"></li>
               <li{% if active_page == 'projects' %} class="active"{% endif %}>
-                <a href="{% url 'projects.views.index' %}">Projects</a>
+                <a href="{% url 'project.views.index' %}">Projects</a>
                 <ul class="nav nav-list">
                   <li{% if active_page == 'shoes' %} class="active"{% endif %}>
-                    <a href="{% url 'projects.views.shoes' %}">&#9702 Shoes for Kids</a>
+                    <a href="{% url 'project.views.shoes' %}">&#9702 Shoes for Kids</a>
                   </li>
                 </ul>
               </li>
@@ -47,13 +47,13 @@
               </li>
               <li class="divider"></li>
               <li{% if active_page == 'events' %} class="active"{% endif %}>
-                <a href="{% url 'events.views.index' %}">Events</a>
+                <a href="{% url 'event.views.index' %}">Events</a>
                 <ul class="nav nav-list">
                   <li{% if active_page == 'upcoming' %} class="active"{% endif %}>
-                    <a href="{% url 'events.views.upcoming' %}">&#9702 Upcoming</a>
+                    <a href="{% url 'event.views.upcoming' %}">&#9702 Upcoming</a>
                   </li>
                   <li{% if active_page == 'past' %} class="active"{% endif %}>
-                    <a href="{% url 'events.views.past' %}">&#9702 Past</a>
+                    <a href="{% url 'event.views.past' %}">&#9702 Recent</a>
                   </li>
                 </ul>
               </li>

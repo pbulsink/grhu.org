@@ -1,5 +1,5 @@
 <!doctype html>
-
+{% load staticfiles %}
 <html>
   <head>
     <meta charset="utf-8">
@@ -8,7 +8,7 @@
     <meta name="revisit-after" content="1 day"/>
     <meta name="author" content="Philip Bulsink"/>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="../static/grhuorg/united_bootstrap.css">
+    <link rel="stylesheet" href="{% static "grhuorg/united_bootstrap.css" %}">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript">
@@ -91,15 +91,15 @@
         <p class="pull-right"></p>
         <ul class="pull-right inline">
           <li>
-            <a href="http://www.facebook.com/grhuganda" onClick="_gaq.push(['_trackEvent', 'Social Click', 'Facebook']); _gaq.push(['_trackEvent', 'Unblocked', 'Footer to Social']);"><img src="../static/grhuorg/facebook-icon.gif" width="20" height="20" id="Facebook"></a>
+            <a href="http://www.facebook.com/grhuganda" onClick="_gaq.push(['_trackEvent', 'Social Click', 'Facebook']); _gaq.push(['_trackEvent', 'Unblocked', 'Footer to Social']);"><img src="{% static "grhuorg/facebook-icon.gif" %}" width="20" height="20" id="Facebook"></a>
           </li>
           <li>&bull;</li>
           <li>
-            <a href="http://plus.google.com/114042273682281707356" onClick="_gaq.push(['_trackEvent', 'Social Click', 'Google Plus']); _gaq.push(['_trackEvent', 'Unblocked', 'Footer to Social']);"><img src="../static/grhuorg/google-plus-icon.gif" width="20" height="20" id="G+"></a>
+            <a href="http://plus.google.com/114042273682281707356" onClick="_gaq.push(['_trackEvent', 'Social Click', 'Google Plus']); _gaq.push(['_trackEvent', 'Unblocked', 'Footer to Social']);"><img src="{% static "grhuorg/google-plus-icon.gif" %}" width="20" height="20" id="G+"></a>
           </li>
           <li>&bull;</li>
           <li>
-            <a href="http://twitter.com/grhuganda" onClick="_gaq.push(['_trackEvent', 'Social Click', 'Twitter']); _gaq.push(['_trackEvent', 'Unblocked', 'Footer to Social']);"><img src="../static/grhuorg/twitter-icon.gif" width="20" height="20" id="Twitter"></a>
+            <a href="http://twitter.com/grhuganda" onClick="_gaq.push(['_trackEvent', 'Social Click', 'Twitter']); _gaq.push(['_trackEvent', 'Unblocked', 'Footer to Social']);"><img src="{% static "grhuorg/twitter-icon.gif" %}" width="20" height="20" id="Twitter"></a>
           </li>
           <li>&bull;<li>
           <li>

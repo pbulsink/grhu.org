@@ -1,9 +1,5 @@
 from django.contrib import admin
-from blog.models import Blog, Comments
-
-class CommentsInline(admin.StackedInline):
-    model = Comments
-    extra = 5
+from blog.models import Blog
 
 class BlogAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -11,7 +7,7 @@ class BlogAdmin(admin.ModelAdmin):
         ('Image Content', {'fields': ['image', 'tooltip']}),
         ('Publish Time',  {'fields': ['pub_date']}),
     ]
-    inlines = [CommentsInline]
+
 
 admin.site.register(Blog, BlogAdmin)
 

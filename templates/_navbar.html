@@ -5,7 +5,7 @@
                 <a href="{% url 'about.views.index' %}">About</a>
               </li>
               <li{% if active_page == 'projects' %} class="active"{% endif %}>
-                <a href="{% url 'projects.views.index' %}">Projects</a>
+                <a href="{% url 'project.views.index' %}">Projects</a>
               </li>
               <li{% if active_page == 'donate' %} class="active"{% endif %}>
                 <a href="{% url 'grhuorg.views.donate' %}">Donate</a>

@@ -1,0 +1,30 @@
+{% extends "__core.html" %}
+{% block Title%}Vision, Mission and Values{{ block.super }}{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='about' %}{% endblock %}
+{% block body %}
+{% include "_sidebar.html" with active_page='vision' %}
+      <div class="container">
+        <div class="well">
+          <h1>Vision, Mission Statement and Values</h1>
+          <div class="well" id="">
+            <h3>Vision Statement:</h1>
+            <p>
+              &quot;Refugees living with hope again.&quot;
+            </p>
+            <h3>Mission Statment:</h3>
+            <p>
+              &quot;GRHU is committed to creating awareness of the hopeless position of all refugees victims of war and violence in Africa. GRHU works to raise the
+              quality of life through income generating projects, skills training, and by providing basic necessities to give hope for a better future.&quot;
+            </p>
+            <h3>Statement of Values:</h3>
+            <p>
+              &quot;GRHU will help every refugee regardless of ethnicity, gender, or religion. The words of  1 John 3:17
+              call us to help everyone in need: &#39;But if anyone has the world's goods and sees his brother in need,
+              yet closes his heart against him, how does God's love abide in him?&#39; This call to help extends not only to
+              our neighbour, but to each and every person on the planet.&quot;
+            </p>
+        </div>
+      </div>
+{% include "_sidebar_close.html" %}
+{% endblock %}
+{% block Footer %}{% include "_footer.html" %}{% endblock %}

@@ -1,9 +1,5 @@
 from django.contrib import admin
-from project.models import Project, Images
-
-class ImageInline(admin.StackedInline):
-    model = Images
-    extra = 3
+from project.models import Project
 
 class ProjectAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -11,7 +7,6 @@ class ProjectAdmin(admin.ModelAdmin):
         ('Project',     {'fields': ['title', 'content', 'active']}),
         ('Title Image', {'fields': ['image', 'tooltip']}),
     ]
-    inlines = [ImageInline]
 
 admin.site.register(Project)
 

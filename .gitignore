@@ -3,5 +3,5 @@
 db.*
 */*.pyc
 *.pyc
-
+*/migrations/
 grhuorg/settings.pyc

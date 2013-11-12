@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from events.models import Event
+from event.models import Event
 
 def index(request):
     first_event = Event.objects.order_by('-event_date')[0]
