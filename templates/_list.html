@@ -1,0 +1,35 @@
+{% extends "__core.html" %}
+{% block Title %}{{pagetitle}}{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page=active_nav %}{% endblock %}
+{% block body %}
+{% include "_sidebar.html" with active_page=active_page %}
+      <div class="container">
+        <h1>GRHU {{pagetitle}}</h1><br>
+        <div class="hero-unit">
+          <div class="row-fluid">
+            <div class="span8">
+              <h2>{{first_item.title}}</h2>
+              <p>{{first_item.description}}</p>
+              <p><a href="{% url active_detail_url first_item.id %}" class="btn btn-warning btn-large">Read More &raquo;</a></p>
+            </div>
+            <div class="span4">
+              <a href="{% url active_detail_url first_item.id %}"><img src="{{first_item.image.url }}", alt="{{first_item.tooltip}}"></a>
+            </div>
+          </div>
+        </div>
+        <p>
+          {{ preamble|safe }}
+        </p>
+        <div class="row-fluid">
+          {% for item in list %}
+            <div class="span4">
+              <h2>{{item.title}}</h2>
+              <p>{{item.byline}}</p>
+              <p><a class="btn" href="{% url active_detail_url item.id %}">View details &raquo;</a></p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+{% include "_sidebar_close.html" %}
+{% endblock %}
+{% block Footer %}{% include "_footer.html" %}{% endblock %}

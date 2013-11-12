@@ -1,0 +1,78 @@
+      <div class="row-fluid">
+        <div class="span2">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li{% if active_page == 'home' %} class="active"{% endif %}>
+                <a href="{% url 'grhuorg.views.index' %}">Home</a>
+              </li>
+              <li class="divider"></li>
+              <li{% if active_page == 'donate' %} class="active"{% endif %}>
+                <a href="{% url 'grhuorg.views.donate' %}">Donate</a>
+              </li>
+              <li class="divider"></li>
+              <li {% if active_page == 'about' %} class="active"{% endif %}>
+                <a href="{% url 'about.views.index' %}">About</a>
+                <ul class="nav nav-list">
+                  <li{% if active_page == 'directors' %} class="active"{% endif %}>
+                    <a href="{% url 'about.views.index' %}">&#9702 Directors</a>
+                  </li>
+                  <li{% if active_page == 'agent' %} class="active"{% endif %}>
+                    <a href="{% url 'about.views.agent' %}">&#9702 Agent in Uganda</a>
+                  </li>
+                  <li{% if active_page == 'vision' %} class="active"{% endif %}>
+                    <a href="{% url 'grhuorg.views.vision' %}">&#9702 Vision</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="divider"></li>
+              <li{% if active_page == 'projects' %} class="active"{% endif %}>
+                <a href="{% url 'projects.views.index' %}">Projects</a>
+                <ul class="nav nav-list">
+                  <li{% if active_page == 'shoes' %} class="active"{% endif %}>
+                    <a href="{% url 'projects.views.shoes' %}">&#9702 Shoes for Kids</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="divider"></li>
+              <li{% if active_page == 'news' %} class="active"{% endif %}>
+                <a href="{% url 'news.views.index' %}">News</a>
+                <ul class="nav nav-list">
+                  <li{% if active_page == 'press' %} class="active"{% endif %}>
+                    <a href="{% url 'press.views.index' %}">&#9702 Press Releases</a>
+                  </li>
+                  <li{% if active_page == 'blog' %} class="active"{% endif %}>
+                    <a href="{% url 'blog.views.index' %}">&#9702 GRHU Blog</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="divider"></li>
+              <li{% if active_page == 'events' %} class="active"{% endif %}>
+                <a href="{% url 'events.views.index' %}">Events</a>
+                <ul class="nav nav-list">
+                  <li{% if active_page == 'upcoming' %} class="active"{% endif %}>
+                    <a href="{% url 'events.views.upcoming' %}">&#9702 Upcoming</a>
+                  </li>
+                  <li{% if active_page == 'past' %} class="active"{% endif %}>
+                    <a href="{% url 'events.views.past' %}">&#9702 Past</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="divider"></li>
+              <li{% if active_page == 'contact' %} class="active"{% endif %}>
+                <a href="{% url 'grhuorg.views.contact' %}">Contact Us</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <div class="centered">
+                  <a href="{% url 'grhuorg.views.index' %}"><img src="../static/grhuorg/colour-logo-500.gif" alt="GRHU Logo"></a>
+                </div>
+              </li>
+              <li>
+                <a href="{% url 'grhuorg.views.vision' %}" style="color:inherit">GRHU is dedicated to help lift the refugees in Uganda out of poverty and give them hope for the future.</a>
+              </li>
+            </ul>
+          </div>
+          <!--/.well -->
+        </div>
+        <!--/span-->
+        <div class="span8">

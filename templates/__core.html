@@ -1,0 +1,127 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-language" content="en-ca">
+    <title>{% block Title %} | Giving Refugees Hope in Uganda{% endblock %}</title>
+    <meta name="revisit-after" content="1 day"/>
+    <meta name="author" content="Philip Bulsink"/>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="../static/grhuorg/united_bootstrap.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39451852-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <script type="text/javascript">
+      function mailgeneration (user, post) {
+        pre = "mail";
+        url = pre + "to:" + u;
+        document.location.href = url + "@grhu.org" + post;
+      }
+    </script>
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      @media(max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+  </head>
+  
+  <body>
+    <header>
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <a href="/" class="brand">Giving Refugees Hope in Uganda</a>
+            <ul class="nav navbar-nav">
+              {% block Navbar %}
+              <li class="active">
+                <a href="/" onClick="_gaq.push(['_trackEvent', 'Unblocked', 'Nav to Home']);">Home</a>
+              </li>
+              <li>
+                <a href="/about" onClick="_gaq.push(['_trackEvent', 'Unblocked', 'Nav to About']);">About</a>
+              </li>
+              <li>
+                <a href="/donate" onClick="_gaq.push(['_trackEvent', 'Unblocked', 'Nav to Donate']);">Donate</a>
+              </li>
+              {% endblock %}
+            </ul>
+        </div>
+      </div>
+    </header>
+    <div class="container-fluid">
+      {% block body %}
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1><div class="pull-left container-fluid"><img src="http://grhu.org/images/tlogo500.gif" class="pull-left" alt="GRHU Logo" height="140" width="200"></div>Giving Refugees</h1>
+        <h1>Hope in Uganda</h1>
+        <p></p>
+        <div class="container-fluid">
+          <p class="text-warning">Something went wrong. You shouldn't see this page if everything is working properly. Please, <a href="javascript:mailgeration('webmaster','')" onClick="_gaq.push(['_trackEvent', 'Unblocked', 'Email Unblocked']);">send us an email</a> to let us know that we're broken!</p>
+          <p class="text-warning"><a href="/" onClick="_gaq.push(['_trackEvent', 'Unblocked', 'Body to Home']);">Click here</a> to go back to the homepage.</p>
+        </div>
+      </div>
+      {% endblock %}
+      <hr>
+    </div>
+    <footer>
+      {% block Footer %}
+      <div class="container">
+        <p class="pull-left">&copy; GRHU 2013</p>
+        <p class="pull-right"></p>
+        <ul class="pull-right inline">
+          <li>
+            <a href="http://www.facebook.com/grhuganda" onClick="_gaq.push(['_trackEvent', 'Social Click', 'Facebook']); _gaq.push(['_trackEvent', 'Unblocked', 'Footer to Social']);"><img src="../static/grhuorg/facebook-icon.gif" width="20" height="20" id="Facebook"></a>
+          </li>
+          <li>&bull;</li>
+          <li>
+            <a href="http://plus.google.com/114042273682281707356" onClick="_gaq.push(['_trackEvent', 'Social Click', 'Google Plus']); _gaq.push(['_trackEvent', 'Unblocked', 'Footer to Social']);"><img src="../static/grhuorg/google-plus-icon.gif" width="20" height="20" id="G+"></a>
+          </li>
+          <li>&bull;</li>
+          <li>
+            <a href="http://twitter.com/grhuganda" onClick="_gaq.push(['_trackEvent', 'Social Click', 'Twitter']); _gaq.push(['_trackEvent', 'Unblocked', 'Footer to Social']);"><img src="../static/grhuorg/twitter-icon.gif" width="20" height="20" id="Twitter"></a>
+          </li>
+          <li>&bull;<li>
+          <li>
+            <a href="/terms" onClick="_gaq.push(['_trackEvent', 'Unblocked', 'Footer to Terms']);">Terms</a>
+          </li>
+          <li>&bull;</li>
+          <li>
+            <a href="/privacy" onClick="_gaq.push(['_trackEvent', 'Unblocked', 'Footer to Privacy']);">Privacy Policy</a>
+          </li>
+          <li>&bull;</li>
+          <li>
+            <a href="/contact-us" onClick="_gaq.push(['_trackEvent', 'Unblocked', 'Footer to Contact-Us']);">Contact Us</a>
+          </li>
+          <li>&bull;</li>
+          <li>
+            <a href="/sitemap" onClick="_gaq.push(['_trackEvent', 'Unblocked', 'Footer to Sitemap']);">Sitemap</a>
+          </li>
+        </ul>
+        <p></p>
+      </div>
+      {% endblock %}
+    </footer>
+  </body>
+
+</html>

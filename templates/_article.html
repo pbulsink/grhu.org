@@ -1,0 +1,20 @@
+{% extends "__core.html" %}
+{% block Title %}{{article.type}}{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page=active_page %}{% endblock %}
+{% block body %}
+{% include "_sidebar.html" with active_page=active_page %}
+      <div class="container">
+        <div class="well">
+          <h1>{{article.title}}</h1>
+          <h5>{{article.author}}</h5>
+          <p>{{article.content1}}</p>
+          <figure>
+            <img src="{{article.imagesrc}}" alt="{{article.tooltip}}">
+            <figcaption>{{article.caption}}</figcaption>
+          </figure>
+          <p>{{article.content2}}</p>
+        </div>
+      </div>
+{% include "_sidebar_close.html" %}
+{% endblock %}
+{% block Footer %}{% include "_footer.html" %}{% endblock %}

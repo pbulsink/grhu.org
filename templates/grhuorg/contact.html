@@ -1,0 +1,60 @@
+{% extends "__core.html" %}
+{% block Title%}Contact{{ block.super }}{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='about' %}{% endblock %}
+{% block body %}
+{% include "_sidebar.html" with active_page='contact' %}
+      <div class="container">
+        <h1>Contact Us</h1>
+        <div class="well">
+          <p>The best way to contact us is through this email form:</p>
+          <form method="post">
+            Name:<br>
+            <input type="text" name="name" value="your name"><br>
+            E-mail:<br>
+            <input type="text" name="mail" value="your email"><br>
+            Comment:<br>
+            <textarea name="comment" rows=4 cols=50 form="usrform">Enter text here...</textarea><br><br>
+            <input type="submit" value="Send">
+            <input type="reset" value="Reset">
+          </form>
+          <p>
+            For more specific information, send us an email:
+          </p>
+          <ul>
+            <li>
+            <a href="javascript:m_sfcon('events','')">Events Information</a>
+            </li>
+            <li>
+            <a href="javascript:m_sfcon('projects','')">Info on Projects</a>
+            </li>
+            <li>
+            <a href="javascript:m_sfcon('donate','')">How to Donate</a>
+            </li>
+            <li>
+            <a href="javascript:m_sfcon('webmaster','')">Website Issues</a>
+            </li>
+            <li>
+            <a href="javascript:m_sfcon('press','')">Info for the Press</a>
+            </li>
+          </ul>
+          <h3>
+            By Phone:
+          </h3>
+          <ul>
+            <li>
+            (613) 614-6068
+            </li>
+          </ul>
+          <h3>
+            By Mail:
+          </h3>
+              2265 Riverside Dr.<br>
+              PO Box 39065<br>
+              Billings Bridge PO<br>
+              Ottawa ON<br>
+              K1H 7X0
+        </div>
+      </div>
+{% include "_sidebar_close.html" %}
+{% endblock %}
+{% block Footer %}{% include "_footer.html" %}{% endblock %}
