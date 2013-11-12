@@ -1,3 +1,7 @@
-.pyc
+*.pyc
 */settings.py
 db.*
+*/*.pyc
+*.pyc
+
+grhuorg/settings.pyc

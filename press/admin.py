@@ -1,3 +1,5 @@
 from django.contrib import admin
+from press.models import Press
 
-# Register your models here.
+admin.site.register(Press)
+
