@@ -28,7 +28,11 @@ def past(request):
     return HttpResponse("Hello, you're at the past events.")
 
 def detail(request, event_id):
+    return HttpResponse("You're looking at event %s." % event_id)
+    
     event = get_object_or_404(Event, pk=event_id)
+    
+    context = {''}
     return HttpResponse("You're looking at event %s." % event_id)
 
 
