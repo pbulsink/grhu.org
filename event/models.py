@@ -30,7 +30,7 @@ class Event(models.Model):
     location_maps_url = models.URLField(blank=True, null=True)
     image = models.ImageField(upload_to = 'events/%Y/%m', blank=True, null=True)
     tooltip = models.CharField(max_length = 100, blank=True, null=True)
-    description = models.CharField(max_length = 500)
+    description = models.CharField(max_length = 500, blank=True, null=True)
     price = models.CharField(max_length = 150)
     public = models.BooleanField('Post Publicly', default=True)
 
@@ -43,6 +43,18 @@ class Event(models.Model):
     def enddatetime(self):
         return datetime(self.date, self.end)
 
-    def datetime(date, time):
-        pass
+    def datetime(datein, timein):
+        """returns a ISOdatetime to the requester for itemprop in template"""
+        datefrmt = datein.strftime('%Y-%m-%d')
+        timefrmt = timein.strftime('T%H:%M%z')
+        datetimefrmt = datefrmt + timefrmt
+        return datetimefrmt
+
+    def clean(self):
+        if self.description != "" or self.description != None:
+            lines = self.content.splitlines()
+            for line in lines:
+                if line != "" and line != None:
+                    desc = (line[:497] + '...') if len(line) > 500 else line
+                    self.description = desc
 

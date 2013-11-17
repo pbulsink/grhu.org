@@ -16,3 +16,11 @@ class News(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def clean(self):
+        if self.description != "" or self.description != None:
+            lines = self.content.splitlines()
+            for line in lines:
+                if line != "" and line != None:
+                    desc = (line[:497] + '...') if len(line) > 500 else line
+                    self.description = desc

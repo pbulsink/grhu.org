@@ -9,6 +9,7 @@ class Album(models.Model):
     description = models.CharField(max_length = 500)
     project = models.ForeignKey('project.Project', related_name='albums', null=True, blank=True)
     blog = models.ForeignKey('blog.Blog', related_name='albums', null=True, blank=True)
+    content = models.TextField()
     public = models.BooleanField('Post Publicly', default=True)
 
     def __unicode__(self):

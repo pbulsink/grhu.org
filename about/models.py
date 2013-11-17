@@ -5,11 +5,13 @@ class About(models.Model):
     DIRECTOR = "Director"
     BOARD = "Board"
     AGENT = "Agent"
+    BOILERPLATE = "Boilerplate"
     ABOUT_TYPE = (
         (GENERAL, 'General'),
         (DIRECTOR, 'Director'),
         (AGENT, 'Agent'),
-        (BOARD, 'Board')
+        (BOARD, 'Board'),
+        (BOILERPLATE, 'Boilerplate')
     )
     about_type = models.CharField(choices=ABOUT_TYPE, max_length=10)
     name = models.CharField(max_length = 75)
