@@ -5,16 +5,28 @@
 {% include "_sidebar.html" with active_page=active_page %}
       <div class="container">
         <div class="well">
-          <h1>{{article.title}}</h1>
-          <h5>{{article.author}}</h5>
+          <h1>{{article.title|title}}</h1>
+          <h5>{{article.author|title}}</h5>
+          <h5>Posted {{article.pub_date|date M jS, Y }}{% if article.mod_date != article.pub_date%} - Modified {{article.mod_date|date M jS, Y }}{% endif %}</h5>
+          {% if article.image %}
           <figure style="float:right; max-width:40%;">
-            <img src="{{article.imagesrc}}" alt="{{article.tooltip}}" style="max-width:100%;">
+            <img src="{{article.image.url}}" alt="{{article.tooltip}}" style="max-width:100%;">
             <figcaption>{{article.caption}}</figcaption>
           </figure>
-          <p>{{article.content}}</p>
-          {% if article.authoremail%}
-            <p><a href="mailto:{{article.authoremail}}">Contact the Author.</a></p>
           {% endif %}
+          {{article.content|linebreaks}}
+          {{article.content|linebreaks}}
+          {% if article.albums %}
+          <p>
+            View photo albums from this post:
+            <ul>
+            {% for album in article.albums.all %}
+              <li><a href="{% url 'album' album.id %}">{{album.title}}</a></li>
+            {% endfor %}
+            </ul>
+          </p>
+          {% endif %}
+          <p><a href="mailto:{{article.author_email}}?subject=Comments about {{article.title}}">Contact the Author.</a></p>
         </div>
       </div>
 {% include "_sidebar_close.html" %}

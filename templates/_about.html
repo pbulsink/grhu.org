@@ -1,0 +1,20 @@
+{% extends "__core.html" %}
+{% block Title %}{{article.type}}{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page=active_page %}{% endblock %}
+{% block body %}
+{% include "_sidebar.html" with active_page=active_page %}
+      <div class="container">
+        <div class="well">
+          <h1>{{about.name|title}}</h1>
+          <h5>{{about.about_type}}</h5>
+          <figure style="float:right; max-width:40%;">
+            <img src="{{about.image.url}}" alt="{{about.tooltip}}" style="max-width:100%;">
+          </figure>
+          {% endif %}
+          {{about.content|linebreaks}}
+            <p><a href="mailto:{{about.email}}">Contact {{about.first_name}}</a></p>
+        </div>
+      </div>
+{% include "_sidebar_close.html" %}
+{% endblock %}
+{% block Footer %}{% include "_footer.html" %}{% endblock %}

@@ -32,7 +32,7 @@ def detail(request, event_id):
     
     event = get_object_or_404(Event, pk=event_id)
     
-    context = {''}
-    return HttpResponse("You're looking at event %s." % event_id)
+    context = {'article': event}
+    return render(request, '_article.html', context)
 
 

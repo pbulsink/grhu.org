@@ -1,15 +1,18 @@
 from django.db import models
 
 class News(models.Model):
-    title = models.CharField(max_length = 500)
-    author = models.CharField(max_length = 75)
-    pub_date = models.DateTimeField('date published')
-    content = models.TextField()
+    title = models.CharField(max_length=500)
+    pub_date = models.DateTimeField('Publication Date', auto_now_add = True)
+    mod_date = models.DateTimeField('Last Modified', auto_now = True)
+    author = models.CharField(max_length=75)
+    author_email = models.EmailField()
     byline = models.CharField(max_length = 150)
-    image = models.ImageField(upload_to = 'news/%Y/%m/%d', blank=True, null=True)
-    tooltip = models.CharField(max_length = 100)
-    press = models.ForeignKey('press.Press')
+    content = models.TextField()
+    image = models.ImageField(upload_to = 'blog/%Y/%m/%d', blank=True, null=True)
+    tooltip = models.CharField(max_length = 100, blank=True, null=True)
+    caption = models.CharField(max_length = 250, blank=True, null=True)
     description = models.CharField(max_length = 500)
+    public = models.BooleanField('Post Publicly', default=True)
 
     def __unicode__(self):
         return self.title
