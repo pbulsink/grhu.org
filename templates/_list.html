@@ -1,34 +1,26 @@
 {% extends "__core.html" %}
-{% block Title %}{{pagetitle}}{% endblock %}
+{% block Title %}{{active_page|title}} List{% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page=active_nav %}{% endblock %}
 {% block body %}
 {% include "_sidebar.html" with active_page=active_page %}
       <div class="container">
-        <h1>GRHU {{pagetitle}}</h1><br>
-        <div class="hero-unit">
-          <div class="row-fluid">
-            <div class="span8">
-              <h2>{{first_item.title}}</h2>
-              <p>{{first_item.description}}</p>
-              <p><a href="{% url active_detail_url first_item.id %}" class="btn btn-warning btn-large">Read More &raquo;</a></p>
-            </div>
-            <div class="span4">
-              <a href="{% url active_detail_url first_item.id %}"><img src="{{first_item.image.url }}", alt="{{first_item.tooltip}}"></a>
-            </div>
-          </div>
-        </div>
+        <h1>{{activepage|title}}</h1>
+        <p>Showing {{active_page}} articles {{start_number}}-{{end_number}} of {{total_articles}}</p>
+        <br>
+        <hr>
+        {% for item in items %}
+        <h2>{{item.title|title}}</h2>
+        <p>{{item.byline}}</p>
+        <p><span class="label">Published {{item.pub_date|date:"j M, Y"}} by {{item.author|title}}</span></p>
+        <p><a class="btn" href="{% url {{urlpointertype}} item.id %}">Read More &raquo;</a></p>
+        <hr>
+        {% endfor %}
+        {% if earlier_pages or later_pages %}
         <p>
-          {{ preamble|safe }}
+          {% if earlier_pages %}<a class="btn" href="{% url {[urlpointertype}} list_pg-1 %}">&laquo; Previous</a>{% endif %}
+          {% if later_pages %}<a class="btn" style="text-align:right" href="{% url {[urlpointertype}} list_pg+1 %}">Next &raquo;</a>{% endif %}
         </p>
-        <div class="row-fluid">
-          {% for item in list %}
-            <div class="span4">
-              <h2>{{item.title}}</h2>
-              <p>{{item.byline}}</p>
-              <p><a class="btn" href="{% url active_detail_url item.id %}">View details &raquo;</a></p>
-            </div>
-          {% endfor %}
-        </div>
+        {% endif %}
       </div>
 {% include "_sidebar_close.html" %}
 {% endblock %}

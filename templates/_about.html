@@ -1,6 +1,6 @@
 {% extends "__core.html" %}
-{% block Title %}{{article.type}}{% endblock %}
-{% block Navbar%}{% include "_navbar.html" with active_page=active_page %}{% endblock %}
+{% block Title %}{{about.name|title}} | About{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='about' %}{% endblock %}
 {% block body %}
 {% include "_sidebar.html" with active_page=active_page %}
       <div class="container">

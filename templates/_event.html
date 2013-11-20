@@ -1,6 +1,6 @@
 {% extends "__core.html" %}
-{% block Title %}{{article.type}}{% endblock %}
-{% block Navbar%}{% include "_navbar.html" with active_page=active_page %}{% endblock %}
+{% block Title %}{{event.title}} | Events{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='events' %}{% endblock %}
 {% block body %}
 {% include "_sidebar.html" with active_page=active_page %}
       <div class="container">
@@ -10,7 +10,7 @@
           {% if event.image %}
           <figure style="float:right; max-width:40%;">
             <img src="{{article.image.url}}" alt="{{article.tooltip}}" style="max-width:100%;">
-            <figcaption>{{article.caption}}</figcaption>
+            <figcaption>{{article.caption|linebreaksbr}}</figcaption>
           </figure>
           {% endif %}
           {{article.content|linebreaks}}

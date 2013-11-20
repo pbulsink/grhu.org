@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
-
+from django.conf.urls.static import static
+from django.conf import settings
 from django.contrib import admin
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -15,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^projects/', include('project.urls')),
     url(r'^press/', include('press.urls')),
     url(r'^events/', include('event.urls')),
+    url(r'^albums/', include('photo_album.urls')),
     url(r'^$', 'grhuorg.views.index', name='index'),
     url(r'^home/?$', 'grhuorg.views.home', name='home'),
     url(r'^terms/?$', 'grhuorg.views.terms', name='terms'),
@@ -29,5 +32,5 @@ urlpatterns = patterns('',
     #url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
 
     
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

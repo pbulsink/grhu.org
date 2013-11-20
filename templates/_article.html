@@ -1,5 +1,5 @@
 {% extends "__core.html" %}
-{% block Title %}{{article.type}}{% endblock %}
+{% block Title %}{{article.title|title}} | {{active_page|Title}}{% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page=active_page %}{% endblock %}
 {% block body %}
 {% include "_sidebar.html" with active_page=active_page %}
@@ -11,10 +11,9 @@
           {% if article.image %}
           <figure style="float:right; max-width:40%;">
             <img src="{{article.image.url}}" alt="{{article.tooltip}}" style="max-width:100%;">
-            <figcaption>{{article.caption}}</figcaption>
+            <figcaption>{{article.caption|linebreaksbr}}</figcaption>
           </figure>
           {% endif %}
-          {{article.content|linebreaks}}
           {{article.content|linebreaks}}
           {% if article.albums %}
           <p>
