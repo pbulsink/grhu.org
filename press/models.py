@@ -14,7 +14,9 @@ class Press(models.Model):
     caption = models.CharField(max_length = 250, blank=True, null=True)
     description = models.CharField(max_length = 500, blank=True, null=True)
     public = models.BooleanField('Post Publicly', default=True)
+    news = models.ForeignKey('news.News', related_name='press_release', null=True, blank=True)
     append_boilerplate = models.BooleanField('Add Boilerplate?', default=True)
+    about_boilerplate = models.ForeignKey('about.About', related_name='boiler_plate')
 
     def __unicode__(self):
         return self.title

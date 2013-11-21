@@ -1,0 +1,49 @@
+{% extends "__core.html" %}
+{% load staticfiles %}
+{% block Title %}News List{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='news' %}{% endblock %}
+{% block body %}
+{% include "_sidebar.html" with active_page='news' %}
+      <div class="container">
+        <h1>GRHU News</h1>
+        <p>Showing news postings {{start_number}}-{{end_number}} of {{total_articles}}</p>
+        <p>
+          {% if earlier_pages %}
+          <a class="btn" href="{% url 'news-lister' list_previous %}">&laquo; Previous</a>
+          {% else %}
+          <a class="btn" href="#" onclick="return false" disabled=True>&laquo; Previous</a>
+          {% endif %}
+          {% if later_pages %}
+          <a class="btn" href="{% url 'news-lister' list_next %}">Next &raquo;</a>
+          {% else %}
+          <a class="btn" href="#" onclick="return false" disabled=True>Next &raquo;</a>
+          {% endif %}
+        </p>
+        <hr>
+        {% for item in items %}
+        <h3><a href="{% url 'news-detail' item.id %}">{{item.title|title}}</a></h3>
+        <p>
+          <small>By {{item.author|title}}</small><br>
+          <small>Published {{item.pub_date|date:"j M, Y"}}{% if item.mod_diff_day %} - Modified {{item.mod_date|date:'j M, Y' }}{% endif %}</small><br>
+          {{item.description}}
+        </p>
+        <hr>
+        {% endfor %}
+        {% if earlier_pages or later_pages %}
+        <p>
+          {% if earlier_pages %}
+          <a class="btn" href="{% url 'news-lister' list_previous %}">&laquo; Previous</a>
+          {% else %}
+          <a class="btn" href="#" onclick="return false" disabled=True>&laquo; Previous</a>
+          {% endif %}
+          {% if later_pages %}
+          <a class="btn" href="{% url 'news-lister' list_next %}">Next &raquo;</a>
+          {% else %}
+          <a class="btn" href="#" onclick="return false" disabled=True>Next &raquo;</a>
+          {% endif %}
+        </p>
+        {% endif %}
+      </div>
+{% include "_sidebar_close.html" %}
+{% endblock %}
+{% block Footer %}{% include "_footer.html" %}{% endblock %}

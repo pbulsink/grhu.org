@@ -1,3 +1,4 @@
+{% load staticfiles %}
       <div class="row-fluid">
         <div class="span2">
           <div class="well sidebar-nav">
@@ -64,7 +65,7 @@
               <li class="divider"></li>
               <li>
                 <div class="centered">
-                  <a href="{% url 'grhuorg.views.index' %}"><img src="../static/grhuorg/colour-logo-500.gif" alt="GRHU Logo"></a>
+                  <a href="{% url 'grhuorg.views.index' %}"><img src="{% static "grhuorg/colour-logo-500.gif" %}" alt="GRHU Logo"></a>
                 </div>
               </li>
               <li>

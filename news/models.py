@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date, datetime
 
 class News(models.Model):
     title = models.CharField(max_length=500)
@@ -25,3 +26,8 @@ class News(models.Model):
                     desc = (line[:497] + '...') if len(line) > 500 else line
                     self.description = desc
                     break
+    
+    def mod_diff_day(self):
+        if (self.pub_date.date == self.mod_date.date):
+            return True
+        return False

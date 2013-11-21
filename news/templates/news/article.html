@@ -1,32 +1,34 @@
 {% extends "__core.html" %}
-{% block Title %}{{article.title|title}} | {{active_page|title}}{% endblock %}
-{% block Navbar%}{% include "_navbar.html" with active_page=active_page %}{% endblock %}
+{% block Title %}{{article.title|title}} | News{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='news' %}{% endblock %}
 {% block body %}
-{% include "_sidebar.html" with active_page=active_page %}
+{% include "_sidebar.html" with active_page='news' %}
       <div class="container">
-        <br>
         <div>
           <h1>{{article.title|title}}</h1>
           <h4>{{article.author|title}}</h4>
-          <small>Posted {{article.pub_date|date:'M jS, Y' }}{% if article.mod_date != article.pub_date%} - Modified {{article.mod_date|date:'M jS, Y' }}{% endif %}</small>
+          <small>Posted {{article.pub_date|date:'M jS, Y' }}{% if article.mod_diff_day %} | Modified {{article.mod_date|date:'M jS, Y' }}{% endif %}</small>
           {% if article.image %}
           <figure style="float:right; max-width:40%;">
             <img src="{{article.image.url}}" alt="{{article.tooltip}}" style="max-width:100%;">
-            <figcaption>{{article.caption|linebreaksbr}}</figcaption>
+            <figcaption>{{article.caption|safe|linebreaksbr}}</figcaption>
           </figure>
           {% endif %}
           <br>
           <br>
-          {{article.content|linebreaks}}
+          {{article.content|safe|linebreaks}}
           {% if article.albums %}
           <p>
             View photo albums from this post:
             <ul>
             {% for album in article.albums.all %}
-              <li><a href="{% url 'album' album.id %}">{{album.title}}</a></li>
+              <li><a href="{% url 'album' article.album.id %}">{{album.title}}</a></li>
             {% endfor %}
             </ul>
           </p>
+          {% endif %}
+          {% if article.press_release and article.press_release.public %}
+          <p><a href="{% url 'press-detail' article.press_release.id %}">Read the press release: {{article.press_release.title}}</a></p>
           {% endif %}
           <p><a href="mailto:{{article.author_email}}?subject=Comments about {{article.title}}">Contact the Author.</a></p>
         </div>
