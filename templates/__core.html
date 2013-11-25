@@ -11,7 +11,7 @@
     <meta name="description" content="{% block Description %}{% endblock %}">
     <link rel="stylesheet" href="{% static "grhuorg/bootstrap.min.css" %}">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static "bootstrap.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "grhuorg/bootstrap.min.js" %}"></script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-39451852-1']);
@@ -21,13 +21,6 @@
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-    </script>
-    <script type="text/javascript">
-      function mailgeneration (user, post) {
-        pre = "mail";
-        url = pre + "to:" + u;
-        document.location.href = url + "@grhu.org" + post;
-      }
     </script>
     <style type="text/css">
       body {
