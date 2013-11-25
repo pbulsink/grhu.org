@@ -1,13 +1,25 @@
 {% extends "__core.html" %}
-{% block Title %}{{article.title|title}} | News{% endblock %}
-{% block Navbar%}{% include "_navbar.html" with active_page='news' %}{% endblock %}
+{% block Title %}{{article.title|title}} | Blog{% endblock %}
+{% block Description %}{{article.byline}}{% endblock %}
+{% block Extra_Head %}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@grhuganda">
+    <meta name="twitter:title" content="{{article.title|title}}">
+    <meta name="twitter:description" content="{{article.byline}}">
+    <meta name="twitter:image:src" content="{{article.image.url}}">
+    <meta name="twitter:domain" content="grhu.org">
+    <meta property="og:title" content="{{article.title|title}}">
+    <meta property="og:image" content="{{article.image.url}}">
+    <meta property="og:description" content="{{article.byline}}">
+{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='blog' %}{% endblock %}
 {% block body %}
-{% include "_sidebar.html" with active_page='news' %}
+{% include "_sidebar.html" with active_page='blog' %}
       <div class="container">
         <div>
           <h1>{{article.title|title}}</h1>
           <h4>{{article.author|title}}</h4>
-          <small>Posted {{article.pub_date|date:'M jS, Y' }}{% if article.mod_diff_day %} - Modified {{article.mod_date|date:'M jS, Y' }}{% endif %}</small>
+          <small>Posted {{article.pub_date|date:'M jS, Y' }}{% if article.mod_diff_day %} | Modified {{article.mod_date|date:'M jS, Y' }}{% endif %}</small>
           {% if article.image %}
           <figure style="float:right; max-width:40%;">
             <img src="{{article.image.url}}" alt="{{article.tooltip}}" style="max-width:100%;">
@@ -19,7 +31,7 @@
           {{article.content|safe|linebreaks}}
           {% if article.albums %}
           <p>
-            View photo albums from this post:
+            View the photo album{% if article.albums.count > 1 %}s{% endif %} related to this post:
             <ul>
             {% for album in article.albums.all %}
               <li><a href="{% url 'album' article.album.id %}">{{album.title}}</a></li>
@@ -27,10 +39,7 @@
             </ul>
           </p>
           {% endif %}
-          {% if article.press_release and article.press_release.public %}
-          <p><a href="{% url 'press-detail' article.press_release.id %}">Read the press release: {{article.press_release.title}}</a></p>
-          {% endif %}
-          <p><a href="mailto:{{article.author_email}}?subject=Comments about {{article.title}}">Contact the Author.</a></p>
+          <p><a href="mailto:{{article.author_email}}?subject=Comments about blog: {{article.title}}">Contact the Author.</a></p>
         </div>
       </div>
 {% include "_sidebar_close.html" %}

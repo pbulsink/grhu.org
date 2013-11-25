@@ -1,27 +1,29 @@
 {% extends "__core.html" %}
-{% block Title %}News{% endblock %}
-{% block Navbar%}{% include "_navbar.html" with active_page='news' %}{% endblock %}
+{% block Title %}Blog{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='blog' %}{% endblock %}
 {% block body %}
-{% include "_sidebar.html" with active_page='news' %}
+{% include "_sidebar.html" with active_page='blog' %}
       <div class="container">
         <div class="hero-unit">
           <h1>{{lead.title}}</h1>
-          <p><span class="label">{{lead.pub_date|date:'j M, Y'}}{% if lead.author %} - {{lead.author}}{% endif %}</span></p>
+          <p><span class="label">{{lead.pub_date|date:'j M, Y'}} - {{lead.author}}</span></p>
           {% if lead.image %}
           <p style="text-align:center;"><img src="{{lead.image.url}}" alt="{{lead.tooltip}}" style="display:inline-block;max-width:600px;max-height:500px;width:auto;height:auto"></p>
           {% endif %}
           <p>{{lead.description}}</p>
-          <p><a href="{% url 'news-detail' lead.id %}" class="btn btn-warning btn-large">Read more &raquo;</a></p>
+          <p><a href="{% url 'blog-detail' lead.id %}" class="btn btn-warning btn-large">Read more &raquo;</a></p>
         </div>
-        <h2>More News from GRHU:</h2>
+        <h2>More Blog Postings from GRHU:</h2>
         <div class="row-fluid">
           {% for item in items %}
           <div class="span4">
             <div class="well">
-              <h2>{{item.title|title}}</h2>
-              <p>{{item.byline}}</p>
-              <p><span class="label">{{item.pub_date|date:"j M, Y"}}</span></p>
-              <p><a class="btn" href="{% url 'news-detail' item.id %}">Read More &raquo;</a></p>
+              <div class="container">
+                <h2>{{item.title|title}}</h2>
+                <p>{{item.byline}}</p>
+                <p><span class="label">{{item.pub_date|date:"j M, Y"}}</span></p>
+                <p><a class="btn" href="{% url 'blog-detail' item.id %}">Read More &raquo;</a></p>
+              </div>
             </div>
           </div>
             {% if forloop.counter|divisibleby:3 %}
@@ -30,7 +32,7 @@
             {% endif %}
           {% endfor %}
         </div>
-        <p><a class="btn" href="{% url 'news-lister' 1 %}">See all {{titletype|title}} &raquo;</a></p>
+        <p><a class="btn" href="{% url 'blog-lister' 1 %}">See all Blog Posts &raquo;</a></p>
       </div>
 {% include "_sidebar_close.html" %}
 {% endblock %}
