@@ -8,9 +8,10 @@
     <meta name="revisit-after" content="1 day"/>
     <meta name="author" content="Philip Bulsink"/>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="{% static "grhuorg/united_bootstrap.css" %}">
+    <meta name="description" content="{% block Description %}{% endblock %}">
+    <link rel="stylesheet" href="{% static "grhuorg/bootstrap.min.css" %}">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{% static "bootstrap.min.js" %}"></script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-39451852-1']);
@@ -45,6 +46,8 @@
         }
       }
     </style>
+    {% block Extra_Head %}
+    {% endblock %}
   </head>
   
   <body>
@@ -95,7 +98,7 @@
           </li>
           <li>&bull;</li>
           <li>
-            <a href="http://plus.google.com/114042273682281707356" onClick="_gaq.push(['_trackEvent', 'Social Click', 'Google Plus']); _gaq.push(['_trackEvent', 'Unblocked', 'Footer to Social']);"><img src="{% static "grhuorg/google-plus-icon.gif" %}" width="20" height="20" id="G+"></a>
+            <a href="http://plus.google.com/114042273682281707356" rel="publisher" onClick="_gaq.push(['_trackEvent', 'Social Click', 'Google Plus']); _gaq.push(['_trackEvent', 'Unblocked', 'Footer to Social']);"><img src="{% static "grhuorg/google-plus-icon.gif" %}" width="20" height="20" id="G+"></a>
           </li>
           <li>&bull;</li>
           <li>

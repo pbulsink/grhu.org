@@ -1,5 +1,17 @@
 {% extends "__core.html" %}
 {% block Title %}{{article.title|title}} | News{% endblock %}
+{% block Description %}{{article.byline}}{% endblock %}
+{% block Extra_Head %}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@grhuganda">
+    <meta name="twitter:title" content="{{article.title|title}}">
+    <meta name="twitter:description" content="{{article.byline}}">
+    <meta name="twitter:image:src" content="{{article.image.url}}">
+    <meta name="twitter:domain" content="grhu.org">
+    <meta property="og:title" content="{{article.title|title}}">
+    <meta property="og:image" content="{{article.image.url}}">
+    <meta property="og:description" content="{{article.byline}}">
+{% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page='news' %}{% endblock %}
 {% block body %}
 {% include "_sidebar.html" with active_page='news' %}
@@ -19,7 +31,7 @@
           {{article.content|safe|linebreaks}}
           {% if article.albums %}
           <p>
-            View photo albums from this post:
+            View the photo album{% if article.albums.count > 1 %}s{% endif %} related to this post:
             <ul>
             {% for album in article.albums.all %}
               <li><a href="{% url 'album' article.album.id %}">{{album.title}}</a></li>
@@ -30,7 +42,7 @@
           {% if article.press_release and article.press_release.public %}
           <p><a href="{% url 'press-detail' article.press_release.id %}">Read the press release: {{article.press_release.title}}</a></p>
           {% endif %}
-          <p><a href="mailto:{{article.author_email}}?subject=Comments about {{article.title}}">Contact the Author.</a></p>
+          <p><a href="mailto:{{article.author_email}}?subject=Comments about news: {{article.title}}">Contact the Author.</a></p>
         </div>
       </div>
 {% include "_sidebar_close.html" %}

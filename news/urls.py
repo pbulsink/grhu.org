@@ -8,4 +8,3 @@ urlpatterns = patterns('',
     url(r'^list/$', views.list, name='news-list-1'),
     url(r'^list/(?P<list_pg>\d+)/$', views.list, name='news-lister')
 )
-
