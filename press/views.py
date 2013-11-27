@@ -4,21 +4,20 @@ from press.models import Press
 from django.http import HttpResponse
 
 def index(request):
-    lead = Press.objects.all().order_by('-pub_date')[0]
-    latest_press_list = Press.objects.all().order_by('-pub_date')[1:10]
+    lead = Press.objects.get(public=True).order_by('-pub_date')[0]
+    latest_press_list = Press.objects.get(public=True).order_by('-pub_date')[1:10]
     context = {
         'items': latest_press_list,
         'lead': lead,
-        'active_page': 'press',
-        'urlpointertype': 'press',
         }
     return render(request, 'press/front.html', context)
 
 def detail(request, press_id):
     press = get_object_or_404(Press, pk=press_id)
+    if not press.public:
+        return Http404
     context = {
         'article': press,
-        'active_page': press
     }
     return render(request, 'press/article.html', context)
 
@@ -28,7 +27,8 @@ def list(request, list_pg=1):
     endno = 9 + (list_pg-1)*10
     later_pages = True
     earlier_pages = True
-    total_articles = Press.objects.count()
+    all_articles = Press.objects.get(public=True).order_by('-pub_date')
+    total_articles = len(all_articles)
     if startno > total_articles:
         return 404
     if endno >= total_articles:
@@ -40,7 +40,7 @@ def list(request, list_pg=1):
     if startno == 0:
         earlier_pages = False
         
-    press_list = Press.objects.all().order_by('-pub_date')[startno:endno]
+    press_list = all_articles[startno:endno]
     context = {
         'items': press_list,
         'active_page': 'press',
