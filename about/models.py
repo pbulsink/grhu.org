@@ -13,7 +13,7 @@ class About(models.Model):
         (BOARD, 'Board'),
         (BOILERPLATE, 'Boilerplate')
     )
-    about_type = models.CharField(choices=ABOUT_TYPE, max_length=10)
+    about_type = models.CharField(choices=ABOUT_TYPE, max_length=12)
     name = models.CharField(max_length = 75)
     email = models.EmailField()
     byline = models.CharField(max_length = 250)

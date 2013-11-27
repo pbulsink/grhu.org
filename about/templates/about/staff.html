@@ -1,0 +1,23 @@
+{% extends "__core.html" %}
+{% block Title %}{{staff.name|title}} | About{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='about' %}{% endblock %}
+{% block body %}
+{% include "_sidebar.html" with active_page=active_page %}
+      <div class="well">
+        <div class="conatiner">
+          <h1>{{staff.name|title}}</h1>
+          <h5>{{staff.about_type}}</h5>
+          {% if staff.image %}
+          <figure style="float:right; max-width:40%;">
+            <img src="{{staff.image.url}}" alt="{{staff.tooltip}}" style="max-width:100%;">
+          </figure>
+          {% endif %}
+          {{staff.content|linebreaks}}
+          {% if staff.email %}
+          <p><a href="mailto:{{staff.email}}">Contact {{staff.first_name}}</a></p>
+          {% endif %}
+        </div>
+      </div>
+{% include "_sidebar_close.html" %}
+{% endblock %}
+{% block Footer %}{% include "_footer.html" %}{% endblock %}
