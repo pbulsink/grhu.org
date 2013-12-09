@@ -1,12 +1,23 @@
 from django.db import models
+from sorl.thumbnail import ImageField
+import datetime
+from grhuorg.settings import FORCE_AUTO_NOW
+from django.utils.text import slugify
+
+def get_image_path(instance, filename):
+    return os.path.join('project', datetime.date.today().year,
+                        slugify(instance.title).replace('-','_'),
+                        slugify(filename).replace('-','_'))
 
 class Project(models.Model):
     pub_date = models.DateTimeField('Publication Date')
-    mod_date = models.DateTimeField('Last Modified')
-    title = models.CharField(max_length = 100)
+    start_date = models.DateTimeField('Project Start Date')
+    end_date = models.DateTimeField('Project End Date')
+    title = models.CharField('Project Title', max_length = 100)
+    short_query = models.CharField('Project Short Query for Code', max_length = 15)
     content = models.TextField()
     byline = models.CharField(max_length = 150)
-    image = models.ImageField(upload_to = 'projects/%Y', blank=True, null=True)
+    image = models.ImageField(upload_to = get_image_path, blank=True, null=True)
     caption = models.CharField(max_length = 250, blank=True, null=True)
     tooltip = models.CharField(max_length = 100, blank=True, null=True) 
     active = models.BooleanField('Currently active project?', default=True)
@@ -24,11 +35,6 @@ class Project(models.Model):
                     desc = (line[:197] + '...') if len(line) > 200 else line
                     self.description = desc
                     break
-
-    def mod_diff_day(self):
-        if (self.pub_date.date == self.mod_date.date):
-            return True
-        return False
 
     def save(self):
         if FORCE_AUTO_NOW:

@@ -1,26 +1,46 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
+from django.shortcuts import redirect, get_list_or_404, Http404
+from django.template import RequestContext
 from project.models import Project
 
 from django.http import HttpResponse
 
 def index(request):
-    lead = Project.objects.all().order_by('-pub_date')[0]
-    latest_project_list = Project.objects.all().order_by('-pub_date')[1:10]
+    projects_list = get_list_or_404(
+        Project.objects.order_by('-start_date'),
+        public=True
+        )[:5]
+    lead = projects_list[0]
+    projects_list = projects_list[1:]
     context = {
-        'items': latest_project_list,
+        'items': projects_list,
         'lead': lead,
-        'active_page': 'project',
-        'urlpointertype': 'project',
         }
-    return render(request, 'project/front.html', context)
+    return render_to_response('project/front.html', context,
+                              context_instance=RequestContext(request))
 
 def detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
+    if not project.public:
+        return Http404
     context = {
         'article': project,
-        'active_page': project
     }
-    return render(request, 'project/article.html', context)
+    return render_to_response('project/article.html', context,
+                              context_instance=RequestContext(request))
+
+def project_finder(request, url):
+    if url == 'shoes':
+        query = 'shoes'
+    else:
+        return Http404
+    
+    project = get_list_or_404(
+        short_query = 'shoes',
+        public=True
+    )
+    
+    return redirect('project-detail', project_id = project.pk)
 
 def list(request, list_pg=1):
     list_pg = int(list_pg)
@@ -30,7 +50,7 @@ def list(request, list_pg=1):
     earlier_pages = True
     total_articles = Project.objects.count()
     if startno > total_articles:
-        return 404
+        return Http404
     if endno >= total_articles:
         endno = total_articles
         later_pages = False
@@ -40,7 +60,7 @@ def list(request, list_pg=1):
     if startno == 0:
         earlier_pages = False
         
-    project_list = Project.objects.all().order_by('-pub_date')[startno:endno]
+    project_list = Project.objects.filter(public=True).order_by('-pub_date')[startno:endno]
     context = {
         'items': project_list,
         'active_page': 'project',
@@ -53,4 +73,5 @@ def list(request, list_pg=1):
         'list_previous': list_pg-1,
         'list_next': list_pg+1
     }
-    return render(request, 'project/list.html', context)
+    return render_to_response('project/list.html', context,
+                              context_instance=RequestContext(request))

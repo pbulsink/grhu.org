@@ -1,29 +1,29 @@
 {% extends "__core.html" %}
 {% load thumbnail %}
 {% load staticfiles %}
-{% block Title %}Blog List{% endblock %}
+{% block Title %}Projects List{% endblock %}
 {% block Extra_Head%}
 {% if earlier_pages %}
-<link rel="previous" href="{% url 'blog-lister' list_previous %}">
+<link rel="previous" href="{% url 'project-lister' list_previous %}">
 {% endif %}
 {% if later_pages %}
-<link rel="next" href="{% url 'blog-lister' list_next %}">
+<link rel="next" href="{% url 'project-lister' list_next %}">
 {% endif %}
 {% endblock %}
-{% block Navbar%}{% include "_navbar.html" with active_page='blog' %}{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='projects' %}{% endblock %}
 {% block body %}
-{% include "_sidebar.html" with active_page='blog' %}
+{% include "_sidebar.html" with active_page='projects' %}
       <div class="container">
-        <h1>GRHU Blog</h1>
-        <p>Showing blog postings {{start_number}}-{{end_number}} of {{total_articles}}</p>
+        <h1>GRHU Projects</h1>
+        <p>Showing project postings {{start_number}}-{{end_number}} of {{total_articles}}</p>
         <p>
           {% if earlier_pages %}
-          <a class="btn" href="{% url 'blog-lister' list_previous %}">&laquo; Previous</a>
+          <a class="btn" href="{% url 'project-lister' list_previous %}">&laquo; Previous</a>
           {% else %}
           <a class="btn" href="#" onclick="return false" disabled=True>&laquo; Previous</a>
           {% endif %}
           {% if later_pages %}
-          <a class="btn" href="{% url 'blog-lister' list_next %}">Next &raquo;</a>
+          <a class="btn" href="{% url 'project-lister' list_next %}">Next &raquo;</a>
           {% else %}
           <a class="btn" href="#" onclick="return false" disabled=True>Next &raquo;</a>
           {% endif %}
@@ -36,10 +36,9 @@
           <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
           {% endthumbnail %}
           {% endif %}
-          <h3><a href="{% url 'blog-detail' item.id %}">{{item.title|title}}</a></h3>
+          <h3><a href="{% url 'project-detail' item.id %}">{{item.title|title}}</a></h3>
           <p>
-            <small>By {{item.author|title}}</small><br>
-            <small>Published {{item.pub_date|date:"j M, Y"}}{% if item.mod_diff_day %} | Modified {{item.mod_date|date:'j M, Y' }}{% endif %}</small><br>
+            <small>Project Dates {{item.start_date|date:"j M, Y"}} - {{item.end_date|date:"j M, Y"}}</small><br>
             {{item.description}}
           </p>
           <hr>
@@ -48,12 +47,12 @@
         {% if earlier_pages or later_pages %}
         <p>
           {% if earlier_pages %}
-          <a class="btn" href="{% url 'blog-lister' list_previous %}">&laquo; Previous</a>
+          <a class="btn" href="{% url 'project-lister' list_previous %}">&laquo; Previous</a>
           {% else %}
           <a class="btn" href="#" onclick="return false" disabled=True>&laquo; Previous</a>
           {% endif %}
           {% if later_pages %}
-          <a class="btn" href="{% url 'blog-lister' list_next %}">Next &raquo;</a>
+          <a class="btn" href="{% url 'project-lister' list_next %}">Next &raquo;</a>
           {% else %}
           <a class="btn" href="#" onclick="return false" disabled=True>Next &raquo;</a>
           {% endif %}

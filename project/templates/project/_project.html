@@ -6,7 +6,7 @@
       <div class="container">
         <div class="well">
           <h1>{{project.title|title}}</h1>
-          <h5>Posted {{project.pub_date|date M jS, Y }}{% if project.mod_date != project.pub_date%} Modified {{project.mod_date|date M jS, Y }}{% endif %}</h5>
+          <h5>Project Started: {{project.start_date|date M jS, Y }}</h5>
           {% if project.image %}
           <figure style="float:right; max-width:40%;">
             <img src="{{project.image.url}}" alt="{{project.tooltip}}" style="max-width:100%;">

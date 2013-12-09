@@ -16,31 +16,62 @@
 {% block body %}
 {% include "_sidebar.html" with active_page='press' %}
       <div class="container">
-        <div>
-          <h1>{{article.title|title}}</h1>
-          <h4>{{article.author|title}}</h4>
-          <small>Posted {{article.pub_date|date:'M jS, Y' }}{% if article.mod_diff_day %} | Modified {{article.mod_date|date:'M jS, Y' }}{% endif %}</small>
-          {% if article.image %}
+        <div class="well">
+          <h1>{{event.title|title}}</h1>
+          <h5>Posted {{event.pub_date|date M jS, Y }}</h5>
+          {% if event.image %}
           <figure style="float:right; max-width:40%;">
-            <img src="{{article.image.url}}" alt="{{article.tooltip}}" style="max-width:100%;">
-            <figcaption>{{article.caption|safe|linebreaksbr}}</figcaption>
+            <a href="{{ request.get_full_path }}"><img src="{{article.image.url}}" alt="{{article.tooltip}}" style="max-width:100%;"></a>
+            <figcaption>{{article.caption|linebreaksbr}}</figcaption>
           </figure>
           {% endif %}
-          <br>
-          <br>
-          {{article.content|safe|linebreaks}}
-          {% if article.albums %}
-          <p>
-            View the photo album{% if article.albums.count > 1 %}s{% endif %} related to this post:
-            <ul>
-            {% for album in article.albums.all %}
-              <li><a href="{% url 'album' article.album.id %}">{{album.title}}</a></li>
-            {% endfor %}
-            </ul>
-          </p>
-          {% endif %}
-          <p><a href="mailto:{{article.author_email}}?subject=Comments about press: {{article.title}}">Contact the Author.</a></p>
+          {{article.content|linebreaks}}
         </div>
+        <div class="well" itemscope itemtype="http://data-vocabulary.org/Event">
+          <table>
+            <tbody>
+              <tr>
+                <td>Event:</td>
+                <td><span itemprop="description">{{event.title}}</span></td>
+              </tr>
+              {% if event.location_name %}
+              <tr>
+                <td>Location:</td>
+                <td><span itemprop="location">{{event.location_name}}</span></td>
+              </tr>
+              {% endif %}
+              {% if event.location_street_address %}
+              <tr>
+                <span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
+                <td>Address:</td>
+                <td>
+                  <a href="{{event.location_maps_url}}">
+                    <span itemprop="street-address">{{event.location_street_address}}</span><br>
+                    <span itemprop="locality">{{event.location_city}}</span><br>
+                    <span itemprop="region">{{event.location_provence}}</span>
+                  </a>
+                </td>
+                </span>
+              </tr>
+              {% endif %}
+              <tr>
+                <td>Time:</td>
+                <td><time itemprop="startDate" datetime="{{event.startdatetime}}">{{event.date|date:'l, F j, Y'}} {{event.start|date:'P'}}{% if event.end %}</time> - <time itemprop="endDate" datetime="{{event.enddatetime}}">{{event.end|date:'P'}}{% endif %}</time></td>
+              </tr>
+              {% if event.price %}
+              <tr>
+                <td>Price:</td>
+                <td>{{event.price}}</td>
+              </tr>
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+        {% if event.promo_poster %}
+        <p>Check out the <a href="{{event.promo_poster.url}}" target="_blank" onclick="_gaq.push(['_trackEvent', 'File Download', 'Download', '{{event.title|title}} Promo Poster', 0]);">promotional poster</a> for this event.</p>
+        {% endif %}
+        <p>For information on this or any other event, please visit the <a href="{% url 'grhuorg.views.helpout' %}">how to help</a> page.</p>
+        <p><a href="mailto:{{article.author_email}}?subject=Comments about {{article.title}}"onclick="_gaq.push(['_trackEvent', 'Email', 'Click to Contact', '{{event.title|title}} Email', 0]);">Contact GRHU about this event.</a></p>
       </div>
 {% include "_sidebar_close.html" %}
 {% endblock %}
