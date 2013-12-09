@@ -1,7 +1,14 @@
 from django.db import models
 from sorl.thumbnail import ImageField
 import datetime
-from ..grhuorg.settings import FORCE_AUTO_NOW
+import os
+from grhuorg.settings import FORCE_AUTO_NOW
+from django.utils.text import slugify
+
+def get_image_path(instance, filename):
+    return os.path.join('news', datetime.date.today().year,
+                        datetime.date.today().month,
+                        slugify(filename).replace('-','_'))
 
 class News(models.Model):
     title = models.CharField(max_length=100)
@@ -11,7 +18,7 @@ class News(models.Model):
     author_email = models.EmailField()
     byline = models.CharField(max_length = 150)
     content = models.TextField()
-    image = models.ImageField(upload_to = 'news/%Y/%m/%d', blank=True, null=True)
+    image = models.ImageField(upload_to = get_image_path, blank=True, null=True)
     tooltip = models.CharField(max_length = 100, blank=True, null=True)
     caption = models.CharField(max_length = 250, blank=True, null=True)
     description = models.CharField(max_length = 200, blank=True, null=True)

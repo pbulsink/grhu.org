@@ -1,5 +1,15 @@
 from django.db import models
+from sorl.thumbnail import ImageField
+import datetime
+import os
+from grhuorg.settings import FORCE_AUTO_NOW
 from about.models import About
+from django.utils.text import slugify
+
+def get_image_path(instance, filename):
+    return os.path.join('press', datetime.date.today().year,
+                        datetime.date.today().month,
+                        slugify(filename).replace('-','_'))
 
 class Press(models.Model):
     title = models.CharField(max_length=100)
@@ -9,7 +19,7 @@ class Press(models.Model):
     author_email = models.EmailField()
     byline = models.CharField(max_length = 150)
     content = models.TextField()
-    image = models.ImageField(upload_to = 'press/%Y/%m/%d', blank=True, null=True)
+    image = models.ImageField(upload_to = get_image_path, blank=True, null=True)
     tooltip = models.CharField(max_length = 100, blank=True, null=True)
     caption = models.CharField(max_length = 250, blank=True, null=True)
     description = models.CharField(max_length = 200, blank=True, null=True)

@@ -1,6 +1,6 @@
 {% load staticfiles %}
       <div class="row-fluid">
-        <div class="span2">
+        <div class="span2" style="min-width:200px">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li{% if active_page == 'home' %} class="active"{% endif %}>
@@ -15,10 +15,10 @@
                 <a href="{% url 'about.views.index' %}">About</a>
                 <ul class="nav nav-list">
                   <li{% if active_page == 'directors' %} class="active"{% endif %}>
-                    <a href="{% url 'about.views.index' %}">&#9702 Directors</a>
+                    <a href="{% url 'about-directors' %}">&#9702 Directors</a>
                   </li>
                   <li{% if active_page == 'agent' %} class="active"{% endif %}>
-                    <a href="{% url 'about.views.agent' %}">&#9702 Agent in Uganda</a>
+                    <a href="{% url 'about-agents' %}">&#9702 Agent in Uganda</a>
                   </li>
                   <li{% if active_page == 'vision' %} class="active"{% endif %}>
                     <a href="{% url 'grhuorg.views.vision' %}">&#9702 Vision</a>
@@ -30,7 +30,7 @@
                 <a href="{% url 'project.views.index' %}">Projects</a>
                 <ul class="nav nav-list">
                   <li{% if active_page == 'shoes' %} class="active"{% endif %}>
-                    <a href="{% url 'project.views.shoes' %}">&#9702 Shoes for Kids</a>
+                    <a href="{% url 'project-shoes' %}">&#9702 Shoes for Kids</a>
                   </li>
                 </ul>
               </li>
@@ -54,7 +54,7 @@
                     <a href="{% url 'event.views.upcoming' %}">&#9702 Upcoming</a>
                   </li>
                   <li{% if active_page == 'past' %} class="active"{% endif %}>
-                    <a href="{% url 'event.views.past' %}">&#9702 Recent</a>
+                    <a href="{% url 'event.views.recent' %}">&#9702 Recent</a>
                   </li>
                 </ul>
               </li>

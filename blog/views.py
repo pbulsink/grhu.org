@@ -1,16 +1,23 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, Http404, get_list_or_404
+from django.shortcuts import render_to_request
+from django.template import RequestContext
 from blog.models import Blog
 
 from django.http import HttpResponse
 
 def index(request):
-    lead = Blog.objects.get(public=True).order_by('-pub_date')[0]
-    latest_blog_list = Blog.objects.get(public=True).order_by('-pub_date')[1:10]
+    latest_blog_list = get_list_or_404(
+        Blog.objects.order_by('-pub_date'),
+        public = True
+        )[:11]
+    lead = latest_blog_list[0]
+    latest_blog_list = latest_blog_list[1:]
     context = {
         'items': latest_blog_list,
         'lead': lead,
         }
-    return render(request, 'blog/front.html', context)
+    return render_to_response('blog/front.html', context,
+                              context_instance=RequestContext(request))
 
 def detail(request, blog_id):
     blog = get_object_or_404(Blog, pk=blog_id)
@@ -19,7 +26,8 @@ def detail(request, blog_id):
     context = {
         'article': blog,
     }
-    return render(request, 'blog/article.html', context)
+    return render_to_response('blog/article.html', context,
+                              context_instance=RequestContext(request))
 
 def list(request, list_pg=1):
     list_pg = int(list_pg)
@@ -27,7 +35,7 @@ def list(request, list_pg=1):
     endno = 9 + (list_pg-1)*10
     later_pages = True
     earlier_pages = True
-    all_articles = Blog.objecst.get(public=True).order_by('-pub_date')
+    all_articles = Blog.objecst.filter(public=True).order_by('-pub_date')
     total_articles = len(all_articles)
     if startno > total_articles:
         return 404
@@ -53,4 +61,5 @@ def list(request, list_pg=1):
         'list_previous': list_pg-1,
         'list_next': list_pg+1
     }
-    return render(request, 'blog/list.html', context)
+    return render_to_response('blog/list.html', context,
+                              context_instance=RequestContext(request))

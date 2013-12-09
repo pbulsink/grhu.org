@@ -1,16 +1,21 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404, Http404
 from press.models import Press
 
 from django.http import HttpResponse
 
 def index(request):
-    lead = Press.objects.get(public=True).order_by('-pub_date')[0]
-    latest_press_list = Press.objects.get(public=True).order_by('-pub_date')[1:10]
+    latest_press_list = get_list_or_404(
+        Press.objects.order_by('-pub_date'),
+        public=True
+        )[:11]
+    lead = latest_press_list[0]
+    latest_press_list = latest_press_list[1:]
     context = {
         'items': latest_press_list,
         'lead': lead,
         }
-    return render(request, 'press/front.html', context)
+    return render_to_response('press/front.html', context,
+                              context_instance=RequestContext(request))
 
 def detail(request, press_id):
     press = get_object_or_404(Press, pk=press_id)
@@ -19,7 +24,8 @@ def detail(request, press_id):
     context = {
         'article': press,
     }
-    return render(request, 'press/article.html', context)
+    return render_to_response('press/article.html', context,
+                              context_instance=RequestContext(request))
 
 def list(request, list_pg=1):
     list_pg = int(list_pg)
@@ -27,7 +33,9 @@ def list(request, list_pg=1):
     endno = 9 + (list_pg-1)*10
     later_pages = True
     earlier_pages = True
-    all_articles = Press.objects.get(public=True).order_by('-pub_date')
+    all_articles = Press.objects.filter(
+        public=True
+        ).order_by('-pub_date')
     total_articles = len(all_articles)
     if startno > total_articles:
         return 404
@@ -43,7 +51,6 @@ def list(request, list_pg=1):
     press_list = all_articles[startno:endno]
     context = {
         'items': press_list,
-        'active_page': 'press',
         'later_pages': later_pages,
         'earlier_pages': earlier_pages,
         'start_number': startno+1,
@@ -53,4 +60,5 @@ def list(request, list_pg=1):
         'list_previous': list_pg-1,
         'list_next': list_pg+1
     }
-    return render(request, 'press/list.html', context)
+    return render_to_response('press/list.html', context,
+                              context_instance=RequestContext(request))

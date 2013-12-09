@@ -1,23 +1,20 @@
 {% extends "__core.html" %}
-{% load staticfiles %}
 {% block Title%}Home{{ block.super }}{% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page='home' %}{% endblock %}
 {% block body %}
     <div class="container">
-      <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
-        <h1><img src="{% static "grhuorg/colour-logo-500.gif" %}" class="pull-left" alt="GRHU Logo" height="200" width="200">Giving Refugees<br>Hope in Uganda</h1>
+        <h1><img src="../static/grhuorg/colour-logo-500.gif" class="pull-left" alt="GRHU Logo" height="200" width="200">Giving Refugees<br>Hope in Uganda</h1>
         <br>
         <div class="container">
           <p class="pull-left text-warning">GRHU is dedicated to help lift the refugees in Uganda out of poverty and give them hope for the future.<br></p>
           <p></p>
         </div>
       </div>
-      <!-- Example row of columns -->
       <div class="row">
         <div class="span4">
           <h2>About GRHU</h2>
-          <p>GRHU is an Ottawa based charity supporting refugees living in Uganda. Read more about what we are doing and who we are</p>
+          <p>GRHU is an Ottawa based charity supporting refugees living in Uganda. Read more about what we are doing and who we are.</p>
           <p><a class="btn btn-inverse" href="{% url 'about.views.index' %}">See More &raquo;</a></p>
         </div>
         <div class="span4">
@@ -29,6 +26,23 @@
           <h2>Events</h2>
           <p>GRHU hosts events in the Ottawa region a number of times a year. Find out what we have planned, and how you can get involved!</p>
           <p><a class="btn btn-inverse" href="{% url 'event.views.index' %}">View Details &raquo;</a></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span4">
+          <h2>GRHU News</h2>
+          <p>Read the latest News articles to find out what GRHU is doing in Canada and Uganda.</p>
+          <p><a class="btn btn-inverse" href="{% url 'news.views.index' %}">Read More &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h2>Our Blog</h2>
+          <p>Read stories from some of the people who have recieved help from GRHU and other thoughts from our directors.</p>
+          <p><a class="btn btn-inverse" href="{% url 'blog.views.index' %}">Read Posts &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h2>Photo Albums</h2>
+          <p>COMING SOON!! See some photo albums of things GRHU has done!</p>
+          <p><a class="btn btn-inverse" href="#">View Albums &raquo;</a></p>
         </div>
       </div>
 {% endblock %}

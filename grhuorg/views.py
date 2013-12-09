@@ -1,5 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, render, redirect, render_to_response
+from django.template import RequestContext
 
 def index(request):
     return render(request, 'grhuorg/index.html')

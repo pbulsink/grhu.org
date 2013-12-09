@@ -1,15 +1,22 @@
 from django.shortcuts import render, get_object_or_404, Http404
+from django.shortcuts import render_to_response, get_list_or_404
+from django.template import RequestContext
 from news.models import News
 
 
 def index(request):
-    lead = News.objects.get(public__exact=True).order_by('-pub_date')[0]
-    latest_news_list = News.objects.get(public__exact=True).order_by('-pub_date')[1:10]
+    latest_news_list = get_list_or_404(
+        News.objects.order_by('-pub_date'),
+        public=True
+        )[:11]
+    lead = latest_news_list[0]
+    latest_news_list = latest_news_list[1:]
     context = {
         'items': latest_news_list,
         'lead': lead,
         }
-    return render(request, 'news/front.html', context)
+    return render_to_response('news/front.html', context,
+                              context_instance=RequestContext(request))
 
 
 def detail(request, news_id):
@@ -19,7 +26,8 @@ def detail(request, news_id):
     context = {
         'article': news,
     }
-    return render(request, 'news/article.html', context)
+    return render_to_response('news/article.html', context,
+                              context_instance=RequestContext(request))
 
 
 def list(request, list_pg=1):
@@ -28,10 +36,12 @@ def list(request, list_pg=1):
     endno = 9 + (list_pg-1)*10
     later_pages = True
     earlier_pages = True
-    all_articles = News.objects.get(public=True).order_by('-pub_date')
+    all_articles = News.objects.filter(
+        public=True
+        ).order_by('-pub_date')
     total_articles = len(all_articles)
     if startno > total_articles:
-        return 404
+        return Http404
     if endno >= total_articles:
         endno = total_articles
         later_pages = False
@@ -54,4 +64,5 @@ def list(request, list_pg=1):
         'list_previous': list_pg-1,
         'list_next': list_pg+1
     }
-    return render(request, 'news/list.html', context)
+    return render_to_response('news/list.html', context,
+                              context_instance=RequestContext(request))
