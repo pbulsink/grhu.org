@@ -1,0 +1,20 @@
+{% extends "__core.html" %}
+{% block Title %}Error 500{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='error' %}{% endblock %}
+{% block body %}
+{% include "_sidebar.html" with active_page='error' %}
+      <div class="container">
+        <div class="hero-unit">
+          <h1>Error 500 - Server Error</h1>
+          <p>
+            It looks like something went wrong on our server. Please try again after a short time.
+            If the error keeps appearing, please <a href='mailto:webmaster@grhu.org'>send us an email</a> and tell us what happened.
+          </p>
+          <p>
+            Thanks for your interest in GRHU! Perhaps one of the pages from the sidebar can direct you to where you want to go or go <a href="{{url grhu.views.index }}" onclick="_gaq.push(['_trackEvent', 'Error Navigate', '404', '404', 0]);">to the homepage</a>.
+          </p>
+        </div>
+      </div>
+{% include "_sidebar_close.html" %}
+{% endblock %}
+{% block Footer %}{% include "_footer.html" %}{% endblock %}

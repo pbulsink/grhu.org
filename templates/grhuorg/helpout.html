@@ -1,0 +1,27 @@
+{% extends "__core.html" %}
+{% block Title%}Help Out{{ block.super }}{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='about' %}{% endblock %}
+{% block body %}
+{% include "_sidebar.html" with active_page='about' %}
+      <h1>Help Out with GRHU</h1>
+      <div class="well" id="">
+        <p>
+          So you want to help out with GRHU? Maybe you want to help at an event,
+          or you have an idea on another event that GRHU could do, or you have
+          ideas on running your own! We're really excited to hear about all the
+          ways you want to help out, and we'll be sure to find you a place with
+          a job to do. If you need volunteer hours for school or any other reason,
+          we'll be happy to sign off on that as well. No matter what your motivation,
+          please send us an email at <a href="mailto:info@grhu.org">info@grhu.org</a>
+          and we'll be sure to gt back to you with how you can help us!
+        </p>
+        <p>
+          If you'd like to help out by attending an event, find out when the next one is <a href="{% url 'event-index' %}">here</a>.
+        </p>
+        <p>
+          For information on donating, please visit the <a href="{{ url 'donate' }}">donation page</a>.
+        </p>
+      </div>
+{% include "_sidebar_close.html" %}
+{% endblock %}
+{% block Footer %}{% include "_footer.html" %}{% endblock %}
