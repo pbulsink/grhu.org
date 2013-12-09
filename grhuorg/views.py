@@ -24,7 +24,7 @@ def contact(request):
     return render(request, 'grhuorg/contact.html')
 
 def helpout(request):
-    return render(request, 'grhuorg/help-out.html')
+    return render(request, 'grhuorg/helpout.html')
 
 def donate(request):
     return render(request, 'grhuorg/donate.html')
