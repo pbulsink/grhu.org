@@ -46,6 +46,11 @@
                   </li>
                 </ul>
               </li>
+              <!--
+              <li{% if active_page == 'albums' %} class="active"{% endif %}>
+                <a href="{% url 'albums.views.index' %}">Photo Albums</a>
+              </li>
+              -->
               <li class="divider"></li>
               <li{% if active_page == 'events' %} class="active"{% endif %}>
                 <a href="{% url 'event.views.index' %}">Events</a>
