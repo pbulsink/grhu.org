@@ -1,5 +1,6 @@
 *.pyc
-*/settings.py
 db.*
 */migrations/
 /media/*
+
+grhuorg/secret_settings.py
