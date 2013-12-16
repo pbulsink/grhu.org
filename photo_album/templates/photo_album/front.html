@@ -1,36 +1,33 @@
 {% extends "__core.html" %}
-{% block Title %}News{% endblock %}
-{% block Navbar%}{% include "_navbar.html" with active_page='news' %}{% endblock %}
+{% block Title %}Photo Albums{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='albums' %}{% endblock %}
 {% block body %}
-{% include "_sidebar.html" with active_page='news' %}
+{% include "_sidebar.html" with active_page='albums' %}
       <div class="container">
         <div class="hero-unit">
           <h1>{{lead.title}}</h1>
-          <p><span class="label">{{lead.pub_date|date:'j M, Y'}}{% if lead.author %} - {{lead.author}}{% endif %}</span></p>
-          {% if lead.image %}
-          <p style="text-align:center;"><img src="{{lead.image.url}}" alt="{{lead.tooltip}}" style="display:inline-block;max-width:600px;max-height:500px;width:auto;height:auto"></p>
-          {% endif %}
+          <p><span class="label">{{lead.pub_date|date:'j M, Y'}}</span></p>
           <p>{{lead.description}}</p>
-          <p><a href="{% url 'news-detail' lead.id %}" class="btn btn-warning btn-large">Read more &raquo;</a></p>
+          <p><a href="{% url 'album-detail' lead.id %}" class="btn btn-warning btn-large">See Album &raquo;</a></p>
         </div>
-        <h2>More News from GRHU:</h2>
+        <h2>More Photo Albums from GRHU:</h2>
         <div class="row-fluid">
           {% for item in items %}
-          <div class="span4">
+          <div class="span6">
             <div class="well">
               <h2>{{item.title|title}}</h2>
               <p>{{item.byline}}</p>
               <p><span class="label">{{item.pub_date|date:"j M, Y"}}</span></p>
-              <p><a class="btn" href="{% url 'news-detail' item.id %}">Read More &raquo;</a></p>
+              <p><a class="btn" href="{% url 'album-detail' item.id %}">Read More &raquo;</a></p>
             </div>
           </div>
-            {% if forloop.counter|divisibleby:3 %}
+            {% if forloop.counter|divisibleby:2 %}
         </div>
         <div class="row-fluid">
             {% endif %}
           {% endfor %}
         </div>
-        <p><a class="btn" href="{% url 'news-lister' 1 %}">See all {{titletype|title}} &raquo;</a></p>
+        <p><a class="btn" href="{% url 'album-lister' 1 %}">See all Photo Albums &raquo;</a></p>
       </div>
 {% include "_sidebar_close.html" %}
 {% endblock %}

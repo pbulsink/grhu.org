@@ -1,38 +1,64 @@
 {% extends "__core.html" %}
-{% block Title %}{{article.title|title}} | News{% endblock %}
-{% block Navbar%}{% include "_navbar.html" with active_page='news' %}{% endblock %}
+{% block Title %}{{album.atitle|title}} | Albums{% endblock %}
+{% block Description %}{{article.byline}}{% endblock %}
+{% block Extra_Head %}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@grhuganda">
+    <meta name="twitter:domain" content="grhu.org">
+    <meta name="twitter:title" content="{{album.atitle|title}}">
+    <meta name="twitter:description" content="{{album.abyline}}">
+    <meta property="og:title" content="{{album.atitle|title}}">
+    <meta property="og:description" content="{{album.abyline}}">
+    <script>
+      $(document).ready(function(){
+        $('.carousel').carousel({
+          interval: 4000
+        });
+      });
+    </script>
+{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='albums' %}{% endblock %}
 {% block body %}
-{% include "_sidebar.html" with active_page='news' %}
-      <div class="container">
-        <div>
-          <h1>{{article.title|title}}</h1>
-          <h4>{{article.author|title}}</h4>
-          <small>Posted {{article.pub_date|date:'M jS, Y' }}{% if article.mod_diff_day %} - Modified {{article.mod_date|date:'M jS, Y' }}{% endif %}</small>
-          {% if article.image %}
-          <figure style="float:right; max-width:40%;">
-            <img src="{{article.image.url}}" alt="{{article.tooltip}}" style="max-width:100%;">
-            <figcaption>{{article.caption|safe|linebreaksbr}}</figcaption>
-          </figure>
-          {% endif %}
-          <br>
-          <br>
-          {{article.content|safe|linebreaks}}
-          {% if article.albums %}
-          <p>
-            View photo albums from this post:
-            <ul>
-            {% for album in article.albums.all %}
-              <li><a href="{% url 'album' article.album.id %}">{{album.title}}</a></li>
-            {% endfor %}
-            </ul>
-          </p>
-          {% endif %}
-          {% if article.press_release and article.press_release.public %}
-          <p><a href="{% url 'press-detail' article.press_release.id %}">Read the press release: {{article.press_release.title}}</a></p>
-          {% endif %}
-          <p><a href="mailto:{{article.author_email}}?subject=Comments about {{article.title}}">Contact the Author.</a></p>
+{% include "_sidebar.html" with active_page='albums' %}
+      <h1>{{album.atitle|title}}</h1>
+      <div id="carousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          {% for photo in album.photo %}%}
+          <li data-target="#carousel" data-slide-to="{% forloop.counter0 %}" {% if forloop.counter0 == 0 %}class="active"{% endif %}></li>
+          {% endfor %}
+        </ol>
+      
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          {% for photo in album.photo %}
+          <div class="item {% if forloop.counter0 == 0 %}active{% endif %}">
+            <img src="{{photo.url}}" alt="{{photo.ptooltip}}">
+            <div class="carousel-caption">
+              <h3>{{photo.ptitle}}</h3>
+              <p>{{photo.pcaption}}</p>
+            </div>
+          </div>
         </div>
+      
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
       </div>
+      
+      {{album.acontent|linebreaks}}
+      <br>
+      {% if album.aproject %}<p><a href="{{ url album.aproject }}">See the Project</a> for this album.</p>{% endif %}
+      {% if album.ablog %}<p><a href="{{ url album.ablog }}">See the Blog</a> for this album.</p>{% endif %}
+      {% if album.anews %}<p><a href="{{ url album.anews }}">See the News</a> for this album.</p>{% endif %}
+      {% if album.aevent %}<p><a href="{{ url album.aevent }}">See the Event</a> from this album.</p>{% endif %}
+      {% if album.apress %}<p><a href="{{ url album.apress }}">See the Press Release</a> for this album.</p>{% endif %}
+      <br>
+      <p><a class="btn" href="{% url 'album-lister' 1 %}">See all Photo Albums &raquo;</a></p>
 {% include "_sidebar_close.html" %}
 {% endblock %}
 {% block Footer %}{% include "_footer.html" %}{% endblock %}
