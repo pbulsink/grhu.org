@@ -25,10 +25,20 @@ class About(models.Model):
     email = models.EmailField()
     byline = models.CharField(max_length = 250)
     content = models.TextField()
-    image = models.ImageField(upload_to = get_image_path)
-    tooltip = models.CharField(max_length = 100)
-    description = models.CharField(max_length = 500)
+    image = models.ImageField(upload_to = get_image_path, blank=True, null=True)
+    tooltip = models.CharField(max_length = 100, blank=True, null=True)
+    description = models.CharField(max_length = 200)
     public = models.BooleanField('Post Publicly', default=True)
+
+    def clean(self):
+        if self.description != "" or self.description != None:
+            if not self.id:
+                lines = self.content.splitlines()
+                for line in lines:
+                    if line != "" and line != None:
+                        desc = (line[:197] + '...') if len(line) > 200 else line
+                        self.description = desc
+                        break
 
     def __unicode__(self):
         return self.name

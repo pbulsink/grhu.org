@@ -33,12 +33,13 @@ class Press(models.Model):
 
     def clean(self):
         if self.description != "" or self.description != None:
-            lines = self.content.splitlines()
-            for line in lines:
-                if line != "" and line != None:
-                    desc = (line[:197] + '...') if len(line) > 200 else line
-                    self.description = desc
-                    break
+            if not self.id:
+                lines = self.content.splitlines()
+                for line in lines:
+                    if line != "" and line != None:
+                        desc = (line[:197] + '...') if len(line) > 200 else line
+                        self.description = desc
+                        break
 
     def full_content(self):
         if self.append_boilerplate:

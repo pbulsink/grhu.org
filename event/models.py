@@ -3,8 +3,11 @@ from sorl.thumbnail import ImageField
 import datetime
 import os
 from grhuorg.settings import FORCE_AUTO_NOW
-from grhuorg.formatChecker import ContentTypeRestrictedFileField
+from lib.formatChecker import ContentTypeRestrictedFileField
 from django.utils.text import slugify
+from south.modelsinspector import add_introspection_rules
+
+add_introspection_rules([], ["^lib\.formatChecker\.ContentTypeRestrictedFileField"])
 
 def get_image_path(instance, filename):
     return os.path.join('events', slugify(instance.title),
@@ -83,12 +86,13 @@ class Event(models.Model):
 
     def clean(self):
         if self.description != "" or self.description != None:
-            lines = self.content.splitlines()
-            for line in lines:
-                if line != "" and line != None:
-                    desc = (line[:197] + '...') if len(line) > 200 else line
-                    self.description = desc
-                    break
+            if not self.id:
+                lines = self.content.splitlines()
+                for line in lines:
+                    if line != "" and line != None:
+                        desc = (line[:197] + '...') if len(line) > 200 else line
+                        self.description = desc
+                        break
 
     def save(self):
         if FORCE_AUTO_NOW:
