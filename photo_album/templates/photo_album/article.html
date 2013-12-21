@@ -1,4 +1,5 @@
 {% extends "__core.html" %}
+{% load markdowntag %}
 {% block Title %}{{album.atitle|title}} | Albums{% endblock %}
 {% block Description %}{{article.byline}}{% endblock %}
 {% block Extra_Head %}
@@ -36,7 +37,7 @@
             <img src="{{photo.url}}" alt="{{photo.ptooltip}}">
             <div class="carousel-caption">
               <h3>{{photo.ptitle}}</h3>
-              <p>{{photo.pcaption}}</p>
+              {{photo.pcaption|my_markdown}}
             </div>
           </div>
         </div>
@@ -50,7 +51,7 @@
         </a>
       </div>
       
-      {{album.acontent|linebreaks}}
+      {{album.acontent|my_markdown}}
       <br>
       {% if album.aproject %}<p><a href="{{ url album.aproject }}">See the Project</a> for this album.</p>{% endif %}
       {% if album.ablog %}<p><a href="{{ url album.ablog }}">See the Blog</a> for this album.</p>{% endif %}

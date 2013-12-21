@@ -28,11 +28,6 @@
               <li class="divider"></li>
               <li{% if active_page == 'projects' %} class="active"{% endif %}>
                 <a href="{% url 'project.views.index' %}">Projects</a>
-                <ul class="nav nav-list">
-                  <li{% if active_page == 'shoes' %} class="active"{% endif %}>
-                    <a href="{% url 'project-shoes' %}">&#9702 Shoes for Kids</a>
-                  </li>
-                </ul>
               </li>
               <li class="divider"></li>
               <li{% if active_page == 'news' %} class="active"{% endif %}>
@@ -47,8 +42,8 @@
                 </ul>
               </li>
               <!--
-              <li{% if active_page == 'albums' %} class="active"{% endif %}>
-                <a href="{% url 'albums.views.index' %}">Photo Albums</a>
+              <li{ % if active_page == 'albums' %} class="active"{ % endif %}>
+                <a href="{ % url 'albums.views.index' %}">Photo Albums</a>
               </li>
               -->
               <li class="divider"></li>

@@ -1,5 +1,6 @@
 {% extends "__core.html" %}
 {% load staticfiles %}
+{% load markdowntag %}
 {% block Title %}Photo Album List{% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page='albums' %}{% endblock %}
 {% block body %}
@@ -24,7 +25,7 @@
         <h3><a href="{% url 'album-detail' item.id %}">{{item.title|title}}</a></h3>
         <p>
           <small>Published {{item.pub_date|date:"j M, Y"}}</small><br>
-          {{item.description}}
+          {{item.description|my_markdown}}
         </p>
         <hr>
         {% endfor %}
