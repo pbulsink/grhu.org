@@ -1,4 +1,7 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404, Http404
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.views.decorators.cache import never_cache
 from press.models import Press
 
 from django.http import HttpResponse
@@ -61,4 +64,17 @@ def list(request, list_pg=1):
         'list_next': list_pg+1
     }
     return render_to_response('press/list.html', context,
+                              context_instance=RequestContext(request))
+
+@never_cache
+def latest(request):
+    latest = get_list_or_404(
+        Press.objects.order_by('-pub_date'),
+        public = True
+        )[:1]
+    lead = latest[0]
+    context = {
+        'article': latest,
+    }
+    return render_to_response('press/article.html', context,
                               context_instance=RequestContext(request))

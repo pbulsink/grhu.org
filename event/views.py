@@ -2,6 +2,7 @@ from event.models import Event
 from django.shortcuts import get_object_or_404, render, redirect
 from django.shortcuts import render_to_response, Http404, get_list_or_404
 from django.template import RequestContext
+from django.views.decorators.cache import never_cache
 from datetime import datetime  
 
 def index(request):
@@ -107,4 +108,17 @@ def list(request, list_pg=1):
         'list_next': list_pg+1
     }
     return render_to_response('event/list.html', context,
+                              context_instance=RequestContext(request))
+
+@never_cache
+def latest(request):
+    latest = get_list_or_404(
+        Event.objects.order_by('-pub_date'),
+        public = True
+        )[:1]
+    lead = latest[0]
+    context = {
+        'article': latest,
+    }
+    return render_to_response('event/article.html', context,
                               context_instance=RequestContext(request))

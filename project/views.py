@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, render_to_response
 from django.shortcuts import redirect, get_list_or_404, Http404
 from django.template import RequestContext
+from django.views.decorators.cache import never_cache
 from project.models import Project
 
 from django.http import HttpResponse
@@ -74,4 +75,17 @@ def list(request, list_pg=1):
         'list_next': list_pg+1
     }
     return render_to_response('project/list.html', context,
+                              context_instance=RequestContext(request))
+
+@never_cache
+def latest(request):
+    latest = get_list_or_404(
+        Project.objects.order_by('-pub_date'),
+        public = True
+        )[:1]
+    lead = latest[0]
+    context = {
+        'article': latest,
+    }
+    return render_to_response('project/article.html', context,
                               context_instance=RequestContext(request))
