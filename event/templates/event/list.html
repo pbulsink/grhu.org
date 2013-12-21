@@ -1,6 +1,7 @@
 {% extends "__core.html" %}
 {% load thumbnail %}
 {% load staticfiles %}
+{% load markdowntag %}
 {% block Title %}Event List{% endblock %}
 {% block Extra_Head%}
 {% if earlier_pages %}
@@ -39,7 +40,7 @@
           <h3><a href="{% url 'event-detail' item.id %}">{{item.title|title}}</a></h3>
           <p>
             <small>Event Date {{item.pub_date|date:"j M, Y"}}</small><br>
-            {{item.description}}
+            {{item.description|my_markdown}}
           </p>
           <hr>
         </div>

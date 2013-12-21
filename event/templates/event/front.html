@@ -1,4 +1,5 @@
 {% extends "__core.html" %}
+{% load markdowntag %}
 {% block Title %}{{titlemod}}Events{% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page='events' %}{% endblock %}
 {% block body %}
@@ -11,10 +12,10 @@
           {% if event.image %}
           <figure style="float:right; max-width:40%;">
             <a href="{% url 'event-detail' event.id %}"><img src="{{event.image.url}}" alt="{{event.tooltip}}" style="max-width:100%;"></a>
-            <figcaption>{{event.caption|linebreaksbr}}</figcaption>
+            <figcaption>{{event.caption|my_markdown}}</figcaption>
           </figure>
           {% endif %}
-          {{event.content|linebreaks}}
+          {{event.content|my_markdown}}
           <p><a href="{% url 'event-detail' event.id %}" class="btn btn-warning btn-large">More Information &raquo;</a></p>
         </div>
         {% if items %}

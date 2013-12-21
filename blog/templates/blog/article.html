@@ -1,4 +1,5 @@
 {% extends "__core.html" %}
+{% load markdowntag %}
 {% block Title %}{{article.title|title}} | Blog{% endblock %}
 {% block Description %}{{article.byline}}{% endblock %}
 {% block Extra_Head %}
@@ -23,12 +24,12 @@
           {% if article.image %}
           <figure style="float:right; max-width:40%;">
             <img src="{{article.image.url}}" alt="{{article.tooltip}}" style="max-width:100%;">
-            <figcaption>{{article.caption|safe|linebreaksbr}}</figcaption>
+            <figcaption>{{article.caption|my_markdown}}</figcaption>
           </figure>
           {% endif %}
           <br>
           <br>
-          {{article.content|safe|linebreaks}}
+          {{article.content|my_markdown}}
           {% if article.albums %}
           <p>
             View the photo album{% if article.albums.count > 1 %}s{% endif %} related to this post:

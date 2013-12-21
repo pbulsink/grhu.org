@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 from secret_settings import DATABASE, S_KEY
 
-SECRET_KEY = SECRET_KEY
+SECRET_KEY = S_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -33,8 +33,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django_admin_bootstrapped.bootstrap3',
-    'django_admin_bootstrapped',
+    #'django_admin_bootstrapped.bootstrap3',
+    #'django_admin_bootstrapped',
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,6 +51,7 @@ INSTALLED_APPS = (
     'project',
     'south',
     'sorl.thumbnail',
+    'lib',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -69,7 +71,7 @@ WSGI_APPLICATION = 'grhuorg.wsgi.application'
 
 CACHE_MIDDLEWARE_ALIAS = 'default'
 CACHE_MIDDLEWARE_KEY_PREFIX = ''
-CACHE_MIDDLEWARE_SECONDS = '600'
+CACHE_MIDDLEWARE_SECONDS = 600
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases

@@ -1,4 +1,5 @@
 {% extends "__core.html" %}
+{% load markdowntag %}
 {% block Title %}Projects{% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page='projects' %}{% endblock %}
 {% block body %}
@@ -10,7 +11,7 @@
           {% if lead.image %}
           <p style="text-align:center;"><img src="{{lead.image.url}}" alt="{{lead.tooltip}}" style="display:inline-block;max-width:600px;max-height:500px;width:auto;height:auto"></p>
           {% endif %}
-          <p>{{lead.description}}</p>
+          <p>{{lead.description|my_markdown}}</p>
           <p><a href="{% url 'press-detail' lead.id %}" class="btn btn-warning btn-large">Read more &raquo;</a></p>
         </div>
         <h2>More Projects of GRHU:</h2>

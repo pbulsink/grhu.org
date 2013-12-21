@@ -1,4 +1,5 @@
 {% extends "__core.html" %}
+{% load markdowntag %}
 {% block Title %}{{article.title|title}} | Projects{% endblock %}
 {% block Description %}{{article.byline}}{% endblock %}
 {% block Extra_Head %}
@@ -24,10 +25,10 @@
           {% if project.image %}
           <figure style="float:right; max-width:40%;">
             <img src="{{project.image.url}}" alt="{{project.tooltip}}" style="max-width:100%;">
-            <figcaption>{{project.caption|linebreaksbr}}</figcaption>
+            <figcaption>{{project.caption|my_markdown}}</figcaption>
           </figure>
           {% endif %}
-          {{project.content|linebreaks}}
+          {{project.content|my_markdown}}
           {% if project.albums %}
           <p>
             View photo albums from this project:

@@ -1,4 +1,5 @@
 {% extends "__core.html" %}
+{% load markdowntag %}
 {% block Title %}{{article.title|title}} | Press{% endblock %}
 {% block Description %}{{article.byline}}{% endblock %}
 {% block Extra_Head %}
@@ -22,10 +23,10 @@
           {% if event.image %}
           <figure style="float:right; max-width:40%;">
             <a href="{{ request.get_full_path }}"><img src="{{article.image.url}}" alt="{{article.tooltip}}" style="max-width:100%;"></a>
-            <figcaption>{{article.caption|linebreaksbr}}</figcaption>
+            <figcaption>{{article.caption|my_markdown}}</figcaption>
           </figure>
           {% endif %}
-          {{article.content|linebreaks}}
+          {{article.content|my_markdown}}
         </div>
         <div class="well" itemscope itemtype="http://data-vocabulary.org/Event">
           <table>
