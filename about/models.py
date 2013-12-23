@@ -27,7 +27,9 @@ class About(models.Model):
     content = models.TextField()
     image = models.ImageField(upload_to = get_image_path, blank=True, null=True)
     tooltip = models.CharField(max_length = 100, blank=True, null=True)
-    description = models.CharField(max_length = 200)
+    description = models.CharField(max_length = 200,
+                                   default='Leave unchanged to auto-generage description',
+                                   blank=True, null=True)
     public = models.BooleanField('Post Publicly', default=True)
 
     def clean(self):
