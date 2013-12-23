@@ -8,10 +8,11 @@ def index(request):
         About,
         public=True
         )
-    director_list = list()
-    board_list = list()
-    general = list()
-    agent_list = list()
+
+    director_list = []
+    board_list = []
+    general = []
+    agent_list = []
     
     for about in about_list:
         if about.about_type == "General":
@@ -19,14 +20,16 @@ def index(request):
         elif about.about_type == "Director":
             director_list.append(about)
         elif about.about_type == "Agent":
-            agent_list.append(agent)
+            agent_list.append(about)
         elif about.about_type == "Board":
             board_list.append(about)
+
+    print general
     
     context = {
         "directors":director_list,
         "boards":board_list,
-        "general":general,
+        "general":general[0],
         "agents":agent_list,
     }
     return render_to_response('about/front.html', context,
@@ -46,11 +49,11 @@ def list(request, staff_type=None):
         for staff in staff_list[:]:
             if staff.about_type == "General" or staff.about_type == "Boilerplate":
                 staff_list.remove(staff)
-    if len(staff_list) == 1:
-        return redirect('about-staff', staff_list[0].id)
+    #if len(staff_list) == 1:
+    #    return redirect('about-staff', staff_list[0].id)
     context={
         'active_page': 'about',
-        'title': staff_type,
+        'ptitle': staff_type,
         'staff': staff_list
     }
     return render_to_response('about/list.html', context,

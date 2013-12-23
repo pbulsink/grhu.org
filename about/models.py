@@ -2,9 +2,12 @@ from django.db import models
 from sorl.thumbnail import ImageField
 from grhuorg.settings import FORCE_AUTO_NOW
 from django.utils.text import slugify
+import os
+import datetime
 
 def get_image_path(instance, filename):
-    return os.path.join('about', datetime.date.today().year,
+    filename = os.path.basename(filename)
+    return os.path.join('about', str(datetime.date.today().year),
                         slugify(filename).replace('-','_'))
 
 class About(models.Model):

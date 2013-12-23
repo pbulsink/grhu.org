@@ -1,4 +1,5 @@
 {% extends "__core.html" %}
+{% load markdowntag %}
 {% load staticfiles %}
 {% block Title %}About{% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page='about' %}{% endblock %}
@@ -7,7 +8,7 @@
       <div class="container">
         <div class="hero-unit">
           <h1>About GRHU</h1>
-          {{general.content|safe|linebreaks}}
+          {{general.content|my_markdown}}
           <iframe width="640" height="480" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ca/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=0%C2%B0+15'+29%22,+32%C2%B0+33'+31%22&amp;aq=&amp;sll=45.250157,-75.800257&amp;sspn=0.677736,1.781158&amp;ie=UTF8&amp;t=h&amp;ll=0.258178,32.55867&amp;spn=0.164793,0.219727&amp;z=12&amp;output=embed"></iframe><br /><small><a href="https://maps.google.ca/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=0%C2%B0+15'+29%22,+32%C2%B0+33'+31%22&amp;aq=&amp;sll=45.250157,-75.800257&amp;sspn=0.677736,1.781158&amp;ie=UTF8&amp;t=h&amp;ll=0.258178,32.55867&amp;spn=0.164793,0.219727&amp;z=12" style="color:#0000FF;text-align:left">View Larger Map</a></small>
         </div>
         {% if agents %}
@@ -19,7 +20,6 @@
               <div class="container">
                 <h2>{{agent.name|title}}</h2>
                 <p>{{agent.byline}}</p>
-                <p><a class="btn" href="{% url 'about-staff' agent.id %}">Read More &raquo;</a></p>
               </div>
             </div>
           </div>
@@ -29,6 +29,7 @@
             {% endif %}
           {% endfor %}
         </div>
+        <p><a class="btn btn-primary" href="{% url 'about-agents' %}">Read More &raquo;</a></p>
         {% endif %}
         {% if directors %}
         <h3>Meet the GRHU Director{% if directors.count > 1 %}s{% endif %}:</h3>
@@ -39,7 +40,6 @@
               <div class="container">
                 <h2>{{director.name|title}}</h2>
                 <p>{{director.byline}}</p>
-                <p><a class="btn" href="{% url 'about-staff' director.id %}">Read More &raquo;</a></p>
               </div>
             </div>
           </div>
@@ -49,6 +49,7 @@
             {% endif %}
           {% endfor %}
         </div>
+        <p><a class="btn btn-primary" href="{% url 'about-directors' %}">Read More &raquo;</a></p>
         {% endif %}
         {% if boards %}
         <h3>Meet the GRHU Director{% if boards.count > 1 %}s{% endif %}:</h3>
@@ -59,7 +60,6 @@
               <div class="container">
                 <h2>{{board.name|title}}</h2>
                 <p>{{board.byline}}</p>
-                <p><a class="btn" href="{% url 'about-staff' board.id %}">Read More &raquo;</a></p>
               </div>
             </div>
           </div>
@@ -69,11 +69,14 @@
             {% endif %}
           {% endfor %}
         </div>
-        {% endif %}
-        <p>Read the Vision, Mission, and Values statements of GRHU.</p>
-        <p>Read the latest GRHU News.</p>
-        <p>Print a copy of the GRHU Promo Pamphlet</p>
-        <p><a class="btn" href="{% url 'press-lister' 1 %}">See all Press Releases &raquo;</a></p>
+        <p><a class="btn btn-primary" href="{% url 'about-board' %}">Read More &raquo;</a></p>
+      {% endif %}
+        <br>
+        <hr>
+        <p>For more information:</p>
+        <p><a href="{% url 'about-vision' %}">See GRHU's Mission, Vision and Values &raquo;</a></p>
+        <p><a href="{% url 'news-index' %}">Read the latest GRHU News &raquo;</a></p>
+
       </div>
 {% include "_sidebar_close.html" %}
 {% endblock %}

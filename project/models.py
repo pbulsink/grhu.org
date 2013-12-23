@@ -3,6 +3,7 @@ from sorl.thumbnail import ImageField
 import datetime
 from grhuorg.settings import FORCE_AUTO_NOW
 from django.utils.text import slugify
+import os
 
 def get_image_path(instance, filename):
     return os.path.join('project', datetime.date.today().year,
