@@ -11,7 +11,9 @@ def index(request):
         Project.objects.order_by('-start_date'),
         public=True
         )[:5]
+    print projects_list
     lead = projects_list[0]
+    print lead.id
     projects_list = projects_list[1:]
     context = {
         'items': projects_list,
@@ -22,8 +24,9 @@ def index(request):
 
 def detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id, public=True)
+    print project
     context = {
-        'article': project,
+        'project': project,
     }
     return render_to_response('project/article.html', context,
                               context_instance=RequestContext(request))

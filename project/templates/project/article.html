@@ -18,8 +18,8 @@
 {% block Navbar%}{% include "_navbar.html" with active_page='projects' %}{% endblock %}
 {% block body %}
 {% include "_sidebar.html" with active_page='project' %}
-      <div class="container">
-        <div class="well">
+      <div class="well">
+        <div class="container">
           <h1>{{project.title|title}}</h1>
           <h5>Project Started: {{project.start_date|date:"M jS, Y" }}</h5>
           {% if project.image %}
