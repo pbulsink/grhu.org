@@ -21,9 +21,7 @@ def index(request):
                               context_instance=RequestContext(request))
 
 def detail(request, project_id):
-    project = get_object_or_404(Project, pk=project_id)
-    if not project.public:
-        return Http404
+    project = get_object_or_404(Project, pk=project_id, public=True)
     context = {
         'article': project,
     }
@@ -31,17 +29,13 @@ def detail(request, project_id):
                               context_instance=RequestContext(request))
 
 def project_finder(request, url):
-    if url == 'shoes':
-        query = 'shoes'
-    else:
-        return Http404
-    
-    project = get_list_or_404(
-        short_query = 'shoes',
-        public=True
-    )
-    
-    return redirect('project-detail', project_id = project.pk)
+    project = get_object_or_404(Project, short_query=url, public=True)
+
+    context = {
+        'article': project,
+    }
+    return render_to_response('project/article.html', context,
+                              context_instance=RequestContext(request))
 
 def list(request, list_pg=1):
     list_pg = int(list_pg)
