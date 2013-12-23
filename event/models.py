@@ -34,7 +34,7 @@ class Event(models.Model):
     content = models.TextField()
     byline = models.CharField(max_length = 150)
     date = models.DateField('Event Date')
-    start = models.TimeField('Event Start Time')
+    start = models.TimeField('Event Start Time', blank=True, null=True)
     end = models.TimeField('Event End', blank=True, null=True)
     location_name = models.CharField('Event Location Name', max_length=150,
                                      blank=True, null=True)
