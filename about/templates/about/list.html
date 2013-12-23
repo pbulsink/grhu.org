@@ -10,14 +10,14 @@
         {% for person in staff %}
         <div class="container">
           <div class="well">
-            <h2>{{person.first_name}}</h2>
-            {% if article.image %}
-            <figure style="float:right; max-width:30%; max-height:250px">
-              <img src="{{person.image.url}}" alt="{{person.name}}" style="max-width:100%;">
-              <figcaption>{{person.name}}</figcaption>
-            </figure>
+            <h2>{{person.name}}</h2>
+            {% if person.image %}
+            <img src="{{person.image.url}}" alt="{{person.name}}" style="float:right;max-width:100;max-height:100;">
             {% endif %}
             {{person.content|my_markdown}}
+            {% if person.email %}
+            <p><a href="mailto:{{person.email}}">Contact {{person.first_name}} &raquo;</a></p>
+            {% endif %}
           </div>
         </div>
         {% endfor %}

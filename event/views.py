@@ -65,7 +65,7 @@ def recent(request):
                               context_instance=RequestContext(request))
 
 def detail(request, event_id):
-    event = get_object_or_404(Event, pk=news_id)
+    event = get_object_or_404(Event, pk=event_id)
     if not event.public:
         return Http404
     context = {

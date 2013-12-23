@@ -8,7 +8,7 @@
         <h1>GRHU {{titlemod}}Events</h1>
         <div class="well">
           <h1><a href="{% url 'event-detail' event.id %}">Next Event: {{event.title|title}}</a></h1>
-          <h5>Posted {{event.pub_date|date M jS, Y }}</h5>
+          <h5>Posted {{event.pub_date|date:"M jS, Y" }}</h5>
           {% if event.image %}
           <figure style="float:right; max-width:40%;">
             <a href="{% url 'event-detail' event.id %}"><img src="{{event.image.url}}" alt="{{event.tooltip}}" style="max-width:100%;"></a>
@@ -38,7 +38,7 @@
             {% endif %}
           {% endfor %}
         </div>
-        {{ endif }}
+        {% endif %}
         <p>
           GRHU periodically puts on events throughout the year. If you're
           interested in helping out with any events, whether planning,

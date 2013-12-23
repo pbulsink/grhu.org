@@ -36,7 +36,7 @@ def list(request, list_pg=1):
     endno = 9 + (list_pg-1)*10
     later_pages = True
     earlier_pages = True
-    all_articles = Blog.objecst.filter(public=True).order_by('-pub_date')
+    all_articles = Blog.objects.filter(public=True).order_by('-pub_date')
     total_articles = len(all_articles)
     if startno > total_articles:
         return 404

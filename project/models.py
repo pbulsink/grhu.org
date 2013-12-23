@@ -13,7 +13,7 @@ def get_image_path(instance, filename):
 class Project(models.Model):
     pub_date = models.DateTimeField('Publication Date')
     start_date = models.DateTimeField('Project Start Date')
-    end_date = models.DateTimeField('Project End Date')
+    end_date = models.DateTimeField('Project End Date', blank=True, null=True)
     title = models.CharField('Project Title', max_length = 100)
     short_query = models.CharField('Project Short Query for Code', max_length = 15)
     content = models.TextField()
@@ -43,4 +43,4 @@ class Project(models.Model):
             if not self.id:
                 self.pub_date = datetime.datetime.now()
             self.mod_date = datetime.datetime.now()
-        return super(News, self).save()
+        return super(Project, self).save()

@@ -21,7 +21,7 @@
       <div class="container">
         <div>
           <h1>{{article.title|title}}</h1>
-          <h4>{{article.author|title}}</h4>
+          <small>By: {{article.author|title}}</small>
           <small>Posted {{article.pub_date|date:'M jS, Y' }}{% if article.mod_diff_day %} | Modified {{article.mod_date|date:'M jS, Y' }}{% endif %}</small>
           {% if article.image %}
           <figure style="float:right; max-width:40%;">
@@ -42,7 +42,7 @@
             </ul>
           </p>
           {% endif %}
-          {% if article.press_release and article.press_release.public %}
+          {% if article.press_release %}
           <p><a href="{% url 'press-detail' article.press_release.id %}">Read the press release: {{article.press_release.title}}</a></p>
           {% endif %}
           <p><a href="mailto:{{article.author_email}}?subject=Comments about news: {{article.title}}">Contact the Author.</a></p>

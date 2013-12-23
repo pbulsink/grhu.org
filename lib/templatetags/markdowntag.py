@@ -11,6 +11,8 @@ register = template.Library()
 @register.filter(is_safe=True)
 @stringfilter
 def my_markdown(value):
+    extensions = ['extra']
     return mark_safe(markdown.markdown(force_unicode(value),
-                                       safe_mode=True,
+                                       extensions,
+                                       safe_mode=remove,
                                        enable_attributes=False))

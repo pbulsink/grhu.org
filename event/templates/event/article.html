@@ -18,9 +18,9 @@
 {% include "_sidebar.html" with active_page='press' %}
       <div class="container">
         <div class="well">
-          <h1>{{event.title|title}}</h1>
-          <h5>Posted {{event.pub_date|date M jS, Y }}</h5>
-          {% if event.image %}
+          <h1>{{article.title|title}}</h1>
+          <h5>Posted {{article.pub_date|date:"M jS, Y" }}</h5>
+          {% if article.image %}
           <figure style="float:right; max-width:40%;">
             <a href="{{ request.get_full_path }}"><img src="{{article.image.url}}" alt="{{article.tooltip}}" style="max-width:100%;"></a>
             <figcaption>{{article.caption|my_markdown}}</figcaption>
@@ -33,23 +33,23 @@
             <tbody>
               <tr>
                 <td>Event:</td>
-                <td><span itemprop="description">{{event.title}}</span></td>
+                <td><span itemprop="description">{{article.title}}</span></td>
               </tr>
-              {% if event.location_name %}
+              {% if article.location_name %}
               <tr>
                 <td>Location:</td>
-                <td><span itemprop="location">{{event.location_name}}</span></td>
+                <td><span itemprop="location">{{article.location_name}}</span></td>
               </tr>
               {% endif %}
-              {% if event.location_street_address %}
+              {% if article.location_street_address %}
               <tr>
                 <span itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
                 <td>Address:</td>
                 <td>
-                  <a href="{{event.location_maps_url}}">
-                    <span itemprop="street-address">{{event.location_street_address}}</span><br>
-                    <span itemprop="locality">{{event.location_city}}</span><br>
-                    <span itemprop="region">{{event.location_provence}}</span>
+                  <a href="{{article.location_maps_url}}">
+                    <span itemprop="street-address">{{article.location_street_address}}</span><br>
+                    <span itemprop="locality">{{article.location_city}}</span><br>
+                    <span itemprop="region">{{article.location_provence}}</span>
                   </a>
                 </td>
                 </span>

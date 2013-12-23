@@ -30,13 +30,13 @@ class Event(models.Model):
         ('NU', 'Nunavut'),
     )
     title = models.CharField(max_length=100)
-    pub_date = models.DateField('Publication Date')
+    pub_date = models.DateField('Publication Date', blank=True)
     content = models.TextField()
     byline = models.CharField(max_length = 150)
     date = models.DateField('Event Date')
     start = models.TimeField('Event Start Time')
     end = models.TimeField('Event End', blank=True, null=True)
-    location_name = models.CharField('Event Location Name', max_length=150)
+    location_name = models.CharField('Event Location Name', max_length=150, blank=True, null=True)
     location_street_address = models.CharField('Location Street Address',
                                                max_length=120, blank=True,
                                                null=True)
@@ -47,10 +47,10 @@ class Event(models.Model):
                                          null=True)
     location_maps_url = models.URLField("Location's Google Maps Url",
                                         blank=True, null=True)
-    image = models.ImageField(upload_to = get_image_path)
-    tooltip = models.CharField(max_length = 100)
-    description = models.CharField(max_length = 200)
-    price = models.CharField('Price', max_length = 150)
+    image = models.ImageField(upload_to = get_image_path, blank=True, null=True)
+    tooltip = models.CharField(max_length = 100, blank=True, null=True)
+    description = models.CharField(max_length = 200, blank=True, null=True)
+    price = models.CharField('Price', max_length = 150, blank=True, null=True)
     public = models.BooleanField('Post Publicly', default=True)
     promo_poster = ContentTypeRestrictedFileField(
         upload_to=get_image_path,
@@ -65,7 +65,9 @@ class Event(models.Model):
             'image/gif',
             'image/png',
             ],
-        max_upload_size=10485760
+        max_upload_size=10485760,
+        blank=True,
+        null=True,
     )
 
     def __unicode__(self):
@@ -99,4 +101,4 @@ class Event(models.Model):
             if not self.id:
                 self.pub_date = datetime.datetime.now()
             self.mod_date = datetime.datetime.now()
-        return super(News, self).save()
+        return super(Event, self).save()

@@ -13,8 +13,8 @@ def get_image_path(instance, filename):
 
 class Press(models.Model):
     title = models.CharField(max_length=100)
-    pub_date = models.DateTimeField('Publication Date')
-    mod_date = models.DateTimeField('Last Modified')
+    pub_date = models.DateTimeField('Publication Date', blank=True, null=True)
+    mod_date = models.DateTimeField('Last Modified', blank=True, null=True)
     author = models.CharField(max_length=75)
     author_email = models.EmailField()
     byline = models.CharField(max_length = 150)
@@ -26,7 +26,12 @@ class Press(models.Model):
     public = models.BooleanField('Post Publicly', default=True)
     news = models.ForeignKey('news.News', related_name='press_release', null=True, blank=True)
     append_boilerplate = models.BooleanField('Add Boilerplate?', default=True)
-    about_boilerplate = models.ForeignKey('about.About', related_name='boiler_plate', blank=True, null=True)
+    about_boilerplate = models.ForeignKey(
+        'about.About',
+        related_name='boiler_plate',
+        default='aboug.get_boilerplate'
+        blank=True,
+        null=True)
 
     def __unicode__(self):
         return self.title
@@ -61,4 +66,4 @@ class Press(models.Model):
             if not self.id:
                 self.pub_date = datetime.datetime.now()
             self.mod_date = datetime.datetime.now()
-        return super(News, self).save()
+        return super(Press, self).save()

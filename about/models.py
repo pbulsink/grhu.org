@@ -40,7 +40,7 @@ class About(models.Model):
             if not self.id:
                 lines = self.content.splitlines()
                 for line in lines:
-                    if line != "" and line != None:
+                    if line != "" and line != None: #strips leading blanklines
                         desc = (line[:197] + '...') if len(line) > 200 else line
                         self.description = desc
                         break
@@ -51,3 +51,5 @@ class About(models.Model):
     def first_name(self):
         return self.name.split(' ', 1)[0]
 
+    def get_boilerplate(self):
+        return About.objects.get(about_type="Boilerplate")

@@ -10,8 +10,8 @@ def get_image_path(instance, filename):
 
 class Album(models.Model):
     atitle = models.CharField(max_length = 100)
-    apub_date = models.DateTimeField('Publication Date')
-    amod_date = models.DateTimeField('Last Modified')
+    apub_date = models.DateTimeField('Publication Date', blank=True, null=True)
+    amod_date = models.DateTimeField('Last Modified', blank=True, null=True)
     abyline = models.CharField(max_length = 150)
     adescription = models.CharField(max_length = 200, blank=True, null=True)
     aproject = models.ForeignKey('project.Project', related_name='albums', null=True, blank=True)
@@ -30,7 +30,7 @@ class Album(models.Model):
             if not self.id:
                 self.pub_date = datetime.datetime.now()
             self.mod_date = datetime.datetime.now()
-        return super(News, self).save()
+        return super(Album, self).save()
 
     def clean(self):
         if self.description != "" or self.description != None:
@@ -60,4 +60,4 @@ class Photo(models.Model):
             if not self.id:
                 self.pub_date = datetime.datetime.now()
             self.mod_date = datetime.datetime.now()
-        return super(News, self).save()
+        return super(Photo, self).save()

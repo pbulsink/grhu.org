@@ -19,7 +19,7 @@
       <div class="container">
         <div>
           <h1>{{article.title|title}}</h1>
-          <h4>{{article.author|title}}</h4>
+          <small>By: {{article.author|title}}</small>
           <small>Posted {{article.pub_date|date:'M jS, Y' }}{% if article.mod_diff_day %} | Modified {{article.mod_date|date:'M jS, Y' }}{% endif %}</small>
           {% if article.image %}
           <figure style="float:right; max-width:40%;">

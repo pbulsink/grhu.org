@@ -7,10 +7,12 @@
     <meta name="twitter:site" content="@grhuganda">
     <meta name="twitter:title" content="{{article.title|title}}">
     <meta name="twitter:description" content="{{article.byline}}">
-    <meta name="twitter:image:src" content="{{article.image.url}}">
     <meta name="twitter:domain" content="grhu.org">
-    <meta property="og:title" content="{{article.title|title}}">
+    {% if article.image %}
+    <meta name="twitter:image:src" content="{{article.image.url}}">
     <meta property="og:image" content="{{article.image.url}}">
+    {% endif %}
+    <meta property="og:title" content="{{article.title|title}}">
     <meta property="og:description" content="{{article.byline}}">
 {% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page='press' %}{% endblock %}
@@ -19,7 +21,7 @@
       <div class="container">
         <div>
           <h1>{{article.title|title}}</h1>
-          <h4>{{article.author|title}}</h4>
+          <small>By: {{article.author|title}}</small>
           <small>Posted {{article.pub_date|date:'M jS, Y' }}{% if article.mod_diff_day %} | Modified {{article.mod_date|date:'M jS, Y' }}{% endif %}</small>
           {% if article.image %}
           <figure style="float:right; max-width:40%;">
