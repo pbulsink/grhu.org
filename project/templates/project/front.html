@@ -12,7 +12,7 @@
           <p style="text-align:center;"><img src="{{lead.image.url}}" alt="{{lead.tooltip}}" style="display:inline-block;max-width:600px;max-height:500px;width:auto;height:auto"></p>
           {% endif %}
           <p>{{lead.description|my_markdown}}</p>
-          <p><a href="{% url 'press-detail' lead.id %}" class="btn btn-warning btn-large">Read more &raquo;</a></p>
+          <p><a href="{% url 'project-detail' lead.id %}" class="btn btn-warning btn-large">Read more &raquo;</a></p>
         </div>
         <h2>More Projects of GRHU:</h2>
         <div class="row-fluid">
@@ -23,7 +23,7 @@
                 <h2>{{item.title|title}}</h2>
                 <p>{{item.byline}}</p>
                 <p><span class="label">{{item.pub_date|date:"j M, Y"}}</span></p>
-                <p><a class="btn" href="{% url 'press-detail' item.id %}">Read More &raquo;</a></p>
+                <p><a class="btn" href="{% url 'project-detail' item.id %}">Read More &raquo;</a></p>
               </div>
             </div>
           </div>
@@ -33,7 +33,7 @@
             {% endif %}
           {% endfor %}
         </div>
-        <p><a class="btn" href="{% url 'press-lister' 1 %}">See all Projects &raquo;</a></p>
+        <p><a class="btn" href="{% url 'project-lister' 1 %}">See all Projects &raquo;</a></p>
       </div>
 {% include "_sidebar_close.html" %}
 {% endblock %}

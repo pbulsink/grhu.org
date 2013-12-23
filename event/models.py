@@ -30,13 +30,14 @@ class Event(models.Model):
         ('NU', 'Nunavut'),
     )
     title = models.CharField(max_length=100)
-    pub_date = models.DateField('Publication Date', blank=True)
+    pub_date = models.DateField('Publication Date', blank=True, null=True)
     content = models.TextField()
     byline = models.CharField(max_length = 150)
     date = models.DateField('Event Date')
     start = models.TimeField('Event Start Time')
     end = models.TimeField('Event End', blank=True, null=True)
-    location_name = models.CharField('Event Location Name', max_length=150, blank=True, null=True)
+    location_name = models.CharField('Event Location Name', max_length=150,
+                                     blank=True, null=True)
     location_street_address = models.CharField('Location Street Address',
                                                max_length=120, blank=True,
                                                null=True)
@@ -47,12 +48,14 @@ class Event(models.Model):
                                          null=True)
     location_maps_url = models.URLField("Location's Google Maps Url",
                                         blank=True, null=True)
-    image = models.ImageField(upload_to = get_image_path, blank=True, null=True)
+    image = models.ImageField('Article Image', upload_to = get_image_path,
+                              blank=True, null=True)
     tooltip = models.CharField(max_length = 100, blank=True, null=True)
     description = models.CharField(max_length = 200, blank=True, null=True)
     price = models.CharField('Price', max_length = 150, blank=True, null=True)
     public = models.BooleanField('Post Publicly', default=True)
     promo_poster = ContentTypeRestrictedFileField(
+        'Promotional Poster',
         upload_to=get_image_path,
         content_types=[
             'application/pdf',
@@ -101,4 +104,6 @@ class Event(models.Model):
             if not self.id:
                 self.pub_date = datetime.datetime.now()
             self.mod_date = datetime.datetime.now()
+        else:
+            self.mod_date = self.pub_date
         return super(Event, self).save()

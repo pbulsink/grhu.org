@@ -6,8 +6,8 @@ from django.utils.text import slugify
 import os
 
 def get_image_path(instance, filename):
-    return os.path.join('blog', datetime.date.today().year,
-                        datetime.date.today().month,
+    return os.path.join('blog', str(datetime.date.today().year),
+                        str(datetime.date.today().month),
                         slugify(filename).replace('-','_'))
 
 class Blog(models.Model):
@@ -47,4 +47,6 @@ class Blog(models.Model):
             if not self.id:
                 self.pub_date = datetime.datetime.now()
             self.mod_date = datetime.datetime.now()
+        else:
+            self.mod_date = self.pub_date
         return super(Blog, self).save()

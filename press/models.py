@@ -7,8 +7,8 @@ from about.models import About
 from django.utils.text import slugify
 
 def get_image_path(instance, filename):
-    return os.path.join('press', datetime.date.today().year,
-                        datetime.date.today().month,
+    return os.path.join('press', str(datetime.date.today().year),
+                        str(datetime.date.today().month),
                         slugify(filename).replace('-','_'))
 
 class Press(models.Model):
@@ -29,7 +29,7 @@ class Press(models.Model):
     about_boilerplate = models.ForeignKey(
         'about.About',
         related_name='boiler_plate',
-        default='aboug.get_boilerplate'
+        default='aboug.get_boilerplate',
         blank=True,
         null=True)
 
@@ -66,4 +66,6 @@ class Press(models.Model):
             if not self.id:
                 self.pub_date = datetime.datetime.now()
             self.mod_date = datetime.datetime.now()
+        else:
+            self.mod_date = self.pub_date
         return super(Press, self).save()

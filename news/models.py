@@ -6,8 +6,8 @@ from grhuorg.settings import FORCE_AUTO_NOW
 from django.utils.text import slugify
 
 def get_image_path(instance, filename):
-    return os.path.join('news', datetime.date.today().year,
-                        datetime.date.today().month,
+    return os.path.join('news', str(datetime.date.today().year),
+                        str(datetime.date.today().month),
                         slugify(filename).replace('-','_'))
 
 class News(models.Model):
@@ -47,4 +47,6 @@ class News(models.Model):
             if not self.id:
                 self.pub_date = datetime.datetime.now()
             self.mod_date = datetime.datetime.now()
+        else:
+            self.mod_date = self.pub_date
         return super(News, self).save()

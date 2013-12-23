@@ -14,5 +14,5 @@ def my_markdown(value):
     extensions = ['extra']
     return mark_safe(markdown.markdown(force_unicode(value),
                                        extensions,
-                                       safe_mode=remove,
+                                       safe_mode='remove',
                                        enable_attributes=False))

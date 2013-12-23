@@ -6,7 +6,7 @@ from django.utils.text import slugify
 import os
 
 def get_image_path(instance, filename):
-    return os.path.join('project', datetime.date.today().year,
+    return os.path.join('project',
                         slugify(instance.title).replace('-','_'),
                         slugify(filename).replace('-','_'))
 
@@ -42,5 +42,4 @@ class Project(models.Model):
         if FORCE_AUTO_NOW:
             if not self.id:
                 self.pub_date = datetime.datetime.now()
-            self.mod_date = datetime.datetime.now()
         return super(Project, self).save()
