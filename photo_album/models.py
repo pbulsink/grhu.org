@@ -33,13 +33,13 @@ class Album(models.Model):
         return super(Album, self).save()
 
     def clean(self):
-        if self.description != "" or self.description != None:
+        if self.adescription != "" or self.adescription != None:
             if not self.id:
-                lines = self.content.splitlines()
+                lines = self.acontent.splitlines()
                 for line in lines:
                     if line != "" and line != None:
                         desc = (line[:197] + '...') if len(line) > 200 else line
-                        self.description = desc
+                        self.adescription = desc
                         break
 
 class Photo(models.Model):

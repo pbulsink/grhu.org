@@ -42,7 +42,7 @@
             </ul>
           </p>
           {% endif %}
-          {% if article.press_release %}
+          {% if article.press_release.id %}
           <p><a href="{% url 'press-detail' article.press_release.id %}">Read the press release: {{article.press_release.title}}</a></p>
           {% endif %}
           <p><a href="mailto:{{article.author_email}}?subject=Comments about news: {{article.title}}">Contact the Author.</a></p>

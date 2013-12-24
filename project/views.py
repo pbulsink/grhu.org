@@ -35,7 +35,7 @@ def project_finder(request, url):
     project = get_object_or_404(Project, short_query=url, public=True)
 
     context = {
-        'article': project,
+        'project': project,
     }
     return render_to_response('project/article.html', context,
                               context_instance=RequestContext(request))
@@ -82,7 +82,7 @@ def latest(request):
         )[:1]
     lead = latest[0]
     context = {
-        'article': latest,
+        'project': lead,
     }
     return render_to_response('project/article.html', context,
                               context_instance=RequestContext(request))

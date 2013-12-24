@@ -74,7 +74,7 @@ def latest(request):
         )[:1]
     lead = latest[0]
     context = {
-        'article': latest,
+        'article': lead,
     }
     return render_to_response('press/article.html', context,
                               context_instance=RequestContext(request))

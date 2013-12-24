@@ -74,9 +74,11 @@ def latest(request):
         News.objects.order_by('-pub_date'),
         public = True
         )[:1]
+    print latest
     lead = latest[0]
+    print lead
     context = {
-        'article': latest,
+        'article': lead,
     }
     return render_to_response('news/article.html', context,
                               context_instance=RequestContext(request))

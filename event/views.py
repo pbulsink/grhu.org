@@ -21,7 +21,7 @@ def index(request):
 
 def upcoming(request):
     event_list = get_list_or_404(
-        Event.objects.order_by('-date'),
+        Event,
         date > datetime.today(),
         public = True
         )
@@ -33,17 +33,20 @@ def upcoming(request):
                 'event': event,
                 'items': event_list
             }
+            context['titlemod'] = 'Upcoming '    
+            return render_to_response('event/front.html', context,
+                context_instance=RequestContext(request))
         else:
             context = {
                 'event' : event_list
             }
-    context['titlemod'] = 'Upcoming '    
-    return render_to_response('event/front.html', context,
-                              context_instance=RequestContext(request))
+            context['titlemod'] = 'Upcoming '    
+            return render_to_response('event/article.html', context,
+                context_instance=RequestContext(request))
 
 def recent(request):
     event_list = get_list_or_404(
-        Event.objects.order_by('-date'),
+        Event,
         date < datetime.today(),
         date.year > datetime.today().year-2,
         public = True
@@ -56,13 +59,16 @@ def recent(request):
                 'event': event,
                 'items': event_list
             }
+            context['titlemod'] = 'Recent '    
+            return render_to_response('event/front.html', context,
+                context_instance=RequestContext(request))
         else:
             context = {
                 'event' : event_list
             }
-    context['titlemod'] = 'Recent '
-    return render_to_response('event/front.html', context,
-                              context_instance=RequestContext(request))
+            context['titlemod'] = 'Recent '    
+            return render_to_response('event/article.html', context,
+                context_instance=RequestContext(request))
 
 def detail(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
@@ -118,7 +124,7 @@ def latest(request):
         )[:1]
     lead = latest[0]
     context = {
-        'article': latest,
+        'article': lead,
     }
     return render_to_response('event/article.html', context,
                               context_instance=RequestContext(request))

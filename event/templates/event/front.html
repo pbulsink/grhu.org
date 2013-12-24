@@ -7,16 +7,18 @@
       <div class="container">
         <h1>GRHU {{titlemod}}Events</h1>
         <div class="well">
-          <h1><a href="{% url 'event-detail' event.id %}">Next Event: {{event.title|title}}</a></h1>
-          <h5>Posted {{event.pub_date|date:"M jS, Y" }}</h5>
-          {% if event.image %}
-          <figure style="float:right; max-width:40%;">
-            <a href="{% url 'event-detail' event.id %}"><img src="{{event.image.url}}" alt="{{event.tooltip}}" style="max-width:100%;"></a>
-            <figcaption>{{event.caption|my_markdown}}</figcaption>
-          </figure>
-          {% endif %}
-          {{event.content|my_markdown}}
-          <p><a href="{% url 'event-detail' event.id %}" class="btn btn-warning btn-large">More Information &raquo;</a></p>
+          <div class="container">
+            <h1><a href="{% url 'event-detail' event.id %}">Latest Event: {{event.title|title}}</a></h1>
+            {% if event.image %}
+            <figure style="float:right; max-width:40%;">
+              <a href="{% url 'event-detail' event.id %}"><img src="{{event.image.url}}" alt="{{event.tooltip}}" style="max-width:100%;"></a>
+              <figcaption>{{event.caption|my_markdown}}</figcaption>
+            </figure>
+            {% endif %}
+            {{event.content|my_markdown}}
+            <br>
+            <p><a href="{% url 'event-detail' event.id %}" class="btn btn-warning btn-large">More Information &raquo;</a></p>
+          </div>
         </div>
         {% if items %}
         <h2>Other GRHU events:</h2>
