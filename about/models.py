@@ -2,7 +2,6 @@ from django.db import models
 from sorl.thumbnail import ImageField
 from grhuorg.settings import FORCE_AUTO_NOW
 from django.utils.text import slugify
-from django.shortcuts i
 import os
 import datetime
 
