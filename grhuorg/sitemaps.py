@@ -17,17 +17,60 @@ class StaticViewSitemap(Sitemap):
 
     def items(self):
         return ['index',
+                'home',
                 'terms',
                 'privacy',
                 'sitemap',
                 'vision',
+                'mission',
+                'helpout',
                 'contact',
                 'helpout',
                 'donate',
                 ]
 
-    def lastmod(self):
-        return datetime.date(2014,01,03)
+    def lastmod(self, item):
+        return datetime.date.today()
+
+    def location(self, item):
+        return reverse(item)
+
+
+class FrontPagesSitemap(Sitemap):
+    priority = 0.6
+    changefreq = 'weekly'
+
+    def items(self):
+        return [
+            'about-index',
+            'about-agents',
+            'about-directors',
+            'about-board',
+            'about-vision',
+            'about-mission',
+            'blog-index',
+            'blog-list-1',
+            'blog-latest',
+            'event-index',
+            'event-list-1',
+            'event-latest',
+            'event-upcoming',
+            'event-recent',
+            'news-index',
+            'news-list-1',
+            'news-latest',
+            #'album-index',
+            #'album-latest',
+            'press-index',
+            'press-list-1',
+            'press-latest',
+            'project-index',
+            'project-list-1',
+            'project-latest',
+        ]
+
+    def lastmod(self, item):
+        return datetime.date.today()
 
     def location(self, item):
         return reverse(item)
@@ -44,7 +87,7 @@ class AboutSitemap(Sitemap):
 
 
 class BlogSitemap(Sitemap):
-    changefreq = "never"
+    changefreq = "weekly"
     priority = 0.8
 
     def items(self):
@@ -55,7 +98,7 @@ class BlogSitemap(Sitemap):
 
 
 class EventSitemap(Sitemap):
-    changefreq = "never"
+    changefreq = "monthly"
     priority = 0.8
 
     def items(self):
@@ -66,7 +109,7 @@ class EventSitemap(Sitemap):
 
 
 class NewsSitemap(Sitemap):
-    changefreq = "never"
+    changefreq = "weekly"
     priority = 0.8
 
     def items(self):
@@ -77,7 +120,7 @@ class NewsSitemap(Sitemap):
 
 
 class PressSitemap(Sitemap):
-    changefreq = "never"
+    changefreq = "weekly"
     priority = 0.5
 
     def items(self):
@@ -88,7 +131,7 @@ class PressSitemap(Sitemap):
 
 
 class ProjectSitemap(Sitemap):
-    changefreq = "never"
+    changefreq = "monthly"
     priority = 0.9
 
     def items(self):

@@ -4,7 +4,7 @@ from django.views.generic import RedirectView
 from about import views
 
 urlpatterns = patterns('',
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.index, name='about-index'),
     url(r'^agents/$', views.list, {'staff_type': 'Agent'}, name='about-agents'),
     url(r'^directors/$', views.list, {'staff_type': 'Director'}, name='about-directors'),
     url(r'^board/$', views.list, {'staff_type': 'Board'}, name='about-board'),
