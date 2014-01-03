@@ -104,12 +104,11 @@ USE_TZ = True
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),]
 
-STATIC_URL = '/static/'
+STATIC_URL = 'http://grhu.org/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-    '$HOME/www/static/',
+    '/home/pbulsink/webapps/grhustatic/',
 )
-MEDIA_URL = '/media/'
+MEDIA_URL = 'http://grhu.org/media/'
 MEDIA_ROOT = os.path.join(
     os.path.join(BASE_DIR, "media"),
 )
