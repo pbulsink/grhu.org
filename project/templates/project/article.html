@@ -1,19 +1,19 @@
 {% extends "__core.html" %}
 {% load markdowntag %}
-{% block Title %}{{article.title|title}} | Projects{% endblock %}
-{% block Description %}{{article.byline}}{% endblock %}
+{% block Title %}{{project.title|title}} | Projects{% endblock %}
+{% block Description %}{{project.byline}}{% endblock %}
 {% block Extra_Head %}
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@grhuganda">
     <meta name="twitter:domain" content="grhu.org">
-    <meta name="twitter:title" content="{{article.title|title}}">
-    <meta name="twitter:description" content="{{article.byline}}">
-    {%if article.image %}
-    <meta name="twitter:image:src" content="{{article.image.url}}">
-    <meta property="og:image" content="{{article.image.url}}">
+    <meta name="twitter:title" content="{{project.title|title}}">
+    <meta name="twitter:description" content="{{project.byline}}">
+    {%if project.image %}
+    <meta name="twitter:image:src" content="{{project.image.url}}">
+    <meta property="og:image" content="{{project.image.url}}">
     {% endif %}
-    <meta property="og:title" content="{{article.title|title}}">
-    <meta property="og:description" content="{{article.byline}}">
+    <meta property="og:title" content="{{project.title|title}}">
+    <meta property="og:description" content="{{project.byline}}">
 {% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page='projects' %}{% endblock %}
 {% block body %}
