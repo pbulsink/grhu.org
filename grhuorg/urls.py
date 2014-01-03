@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 from sitemaps import StaticViewSitemap, AboutSitemap, BlogSitemap, EventSitemap
-from sitemaps import NewsSitemap, PressSitemap, ProjectSitemap
+from sitemaps import NewsSitemap, PressSitemap, ProjectSitemap, FrontPagesSitemap
 
 sitemaps = {
     'static': StaticViewSitemap,
@@ -12,7 +12,8 @@ sitemaps = {
     'event': EventSitemap,
     'news': NewsSitemap,
     'press': PressSitemap,
-    'project': ProjectSitemap
+    'project': ProjectSitemap,
+    'front': FrontPagesSitemap,
 }
 
 admin.autodiscover()

@@ -25,7 +25,6 @@ class StaticViewSitemap(Sitemap):
                 'mission',
                 'helpout',
                 'contact',
-                'helpout',
                 'donate',
                 ]
 
