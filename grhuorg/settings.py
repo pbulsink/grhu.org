@@ -30,6 +30,8 @@ TEMPLATE_DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    '.grhu.org',
+    '.grhu.ca',
 ]
 
 
@@ -106,7 +108,7 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),]
 
 STATIC_URL = 'http://grhu.org/static/'
 STATICFILES_DIRS = (
-    '/home/pbulsink/webapps/grhustatic/',
+    os.path.join(BASE_DIR, "static")
 )
 MEDIA_URL = 'http://grhu.org/media/'
 MEDIA_ROOT = os.path.join(
