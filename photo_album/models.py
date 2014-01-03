@@ -42,6 +42,9 @@ class Album(models.Model):
                         self.adescription = desc
                         break
 
+    def get_absolute_url(self):
+        return "/albums/%i/" % self.id
+
 class Photo(models.Model):
     palbum = models.ForeignKey(Album)
     ptitle = models.CharField('Photo Title', max_length = 150)
@@ -63,3 +66,6 @@ class Photo(models.Model):
         else:
             self.mod_date = self.pub_date
         return super(Photo, self).save()
+
+    def get_absolute_url(self):
+        return "/albums/photos/%i/" % self.id

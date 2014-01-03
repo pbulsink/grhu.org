@@ -50,3 +50,6 @@ class News(models.Model):
         else:
             self.mod_date = self.pub_date
         return super(News, self).save()
+
+    def get_absolute_url(self):
+        return "/news/%i/" % self.id

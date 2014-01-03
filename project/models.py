@@ -43,3 +43,6 @@ class Project(models.Model):
             if not self.id:
                 self.pub_date = datetime.datetime.now()
         return super(Project, self).save()
+
+    def get_absolute_url(self):
+        return "/projects/%i/" % self.id

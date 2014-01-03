@@ -107,3 +107,6 @@ class Event(models.Model):
         else:
             self.mod_date = self.pub_date
         return super(Event, self).save()
+
+    def get_absolute_url(self):
+        return "/event/%i/" % self.id

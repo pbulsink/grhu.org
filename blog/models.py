@@ -50,3 +50,6 @@ class Blog(models.Model):
         else:
             self.mod_date = self.pub_date
         return super(Blog, self).save()
+
+    def get_absolute_url(self):
+        return "/blog/%i/" % self.id

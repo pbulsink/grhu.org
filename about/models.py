@@ -54,3 +54,6 @@ class About(models.Model):
 
     def get_boilerplate(self):
         return About.objects.get(about_type="Boilerplate")
+
+    def get_absolute_url(self):
+        return "/about/%i/" % self.id

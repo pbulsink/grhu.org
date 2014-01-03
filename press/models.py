@@ -69,3 +69,6 @@ class Press(models.Model):
         else:
             self.mod_date = self.pub_date
         return super(Press, self).save()
+
+    def get_absolute_url(self):
+        return "/press/%i/" % self.id
