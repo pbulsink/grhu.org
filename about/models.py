@@ -2,6 +2,7 @@ from django.db import models
 from sorl.thumbnail import ImageField
 from grhuorg.settings import FORCE_AUTO_NOW
 from django.utils.text import slugify
+from django.shortcuts i
 import os
 import datetime
 
@@ -34,6 +35,7 @@ class About(models.Model):
                                    default='Leave unchanged to auto-generage description',
                                    blank=True, null=True)
     public = models.BooleanField('Post Publicly', default=True)
+    pub_date = models.DateTimeField('Added Date', auto_now_add=True, auto_now=True)
 
     def clean(self):
         if self.description != "" or self.description != None:

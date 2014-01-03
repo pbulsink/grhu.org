@@ -2,6 +2,18 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
+from sitemaps import StaticViewSitemap, AboutSitemap, BlogSitemap, EventSitemap
+from sitemaps import NewsSitemap, PressSitemap, ProjectSitemap
+
+sitemaps = {
+    'static': StaticViewSitemap,
+    'about': AboutSitemap,
+    'blog': BlogSitemap,
+    'event': EventSitemap,
+    'news': NewsSitemap,
+    'press': PressSitemap,
+    'project': ProjectSitemap
+}
 
 admin.autodiscover()
 
