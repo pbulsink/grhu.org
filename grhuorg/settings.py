@@ -44,6 +44,8 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'about',
     'blog',
@@ -75,6 +77,8 @@ WSGI_APPLICATION = 'grhuorg.wsgi.application'
 CACHE_MIDDLEWARE_ALIAS = 'default'
 CACHE_MIDDLEWARE_KEY_PREFIX = ''
 CACHE_MIDDLEWARE_SECONDS = 600
+
+SITE_ID=1
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -131,7 +135,7 @@ CACHES = {
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': '/var/tmp/django_cache',  #make this exist when in prod.
+        'LOCATION': '/home/pbulsink/webapps/grhuorg/django_cache', 
         'TIMEOUT': 600,
     }
 }

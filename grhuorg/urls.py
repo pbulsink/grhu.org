@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     url(r'^sitemap/?$', 'grhuorg.views.sitemap', name='sitemap'),
     url(r'^mission/?$', 'grhuorg.views.mission', name='mission'),
     url(r'^helpout/?$', 'grhuorg.views.helpout', name='helpout'),
-    #url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
 
     
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
