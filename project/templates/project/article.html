@@ -18,8 +18,8 @@
 {% block Navbar%}{% include "_navbar.html" with active_page='projects' %}{% endblock %}
 {% block body %}
 {% include "_sidebar.html" with active_page='project' %}
-      <div class="well">
-        <div class="container">
+      <div class="container">
+        <div class="well">
           <h1>{{project.title|title}}</h1>
           <h5>Project Started: {{project.start_date|date:"M jS, Y" }}</h5>
           {% if project.image %}
@@ -29,16 +29,18 @@
           </figure>
           {% endif %}
           {{project.content|my_markdown}}
-          {% if project.albums %}
+          <!--
+          { % if project.albums %}
           <p>
             View photo albums from this project:
             <ul>
-            {% for album in project.albums.all %}
-              <li><a href="{% url 'album' album.id %}">{{album.title}}</a></li>
-            {% endfor %}
+            { % for album in project.albums.all %}
+              <li><a href="{ % url 'album' album.id %}">{ {album.title}}</a></li>
+            { % endfor %}
             </ul>
           </p>
-        {% endif %}
+        { % endif %}
+        -->
           <p>For information on how to help out with this or any other project, please visit the <a href="{% url 'grhuorg.views.helpout' %}">how to help</a> page.</p>
           <p>To donate to this project or GRHU in general, please visit the <a href="{% url 'grhuorg.views.donate' %}">Donate</a> page.</p>
           <p><a href="mailto:info@grhu.org?subject=Comments about {{project.title}}">Contact us about this project</a></p>

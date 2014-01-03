@@ -6,12 +6,14 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@grhuganda">
     <meta name="twitter:title" content="{{article.title|title}}">
-    <meta name="twitter:description" content="{{article.byline}}">
-    <meta name="twitter:image:src" content="{{article.image.url}}">
-    <meta name="twitter:domain" content="grhu.org">
     <meta property="og:title" content="{{article.title|title}}">
-    <meta property="og:image" content="{{article.image.url}}">
+    <meta name="twitter:description" content="{{article.byline}}">
     <meta property="og:description" content="{{article.byline}}">
+    <meta name="twitter:domain" content="grhu.org">
+    {% if article.image %}
+    <meta name="twitter:image:src" content="{{article.image.url}}">
+    <meta property="og:image" content="{{article.image.url}}">
+    {% endif %}
 {% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page='press' %}{% endblock %}
 {% block body %}
