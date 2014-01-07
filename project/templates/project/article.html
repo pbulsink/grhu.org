@@ -29,18 +29,6 @@
           </figure>
           {% endif %}
           {{project.content|my_markdown}}
-          <!--
-          { % if project.albums %}
-          <p>
-            View photo albums from this project:
-            <ul>
-            { % for album in project.albums.all %}
-              <li><a href="{ % url 'album' album.id %}">{ {album.title}}</a></li>
-            { % endfor %}
-            </ul>
-          </p>
-        { % endif %}
-        -->
           <p>For information on how to help out with this or any other project, please visit the <a href="{% url 'grhuorg.views.helpout' %}">how to help</a> page.</p>
           <p>To donate to this project or GRHU in general, please visit the <a href="{% url 'grhuorg.views.donate' %}">Donate</a> page.</p>
           <p><a href="mailto:info@grhu.org?subject=Comments about {{project.title}}">Contact us about this project</a></p>

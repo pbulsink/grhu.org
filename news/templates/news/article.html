@@ -32,18 +32,6 @@
           <br>
           <br>
           {{article.content|my_markdown}}
-          <!--
-          { % if article.albums %}
-          <p>
-            View the photo album{ % if article.albums.count > 1 %}s{ % endif %} related to this post:
-            <ul>
-            { % for album in article.albums.all %}
-              <li><a href="{ % url 'album' article.album.id %}">{ {album.title}}</a></li>
-            { % endfor %}
-            </ul>
-          </p>
-          {% endif %}
-          -->
           {% if article.press_release.id %}
           <p><a href="{% url 'press-detail' article.press_release.id %}">Read the press release: {{article.press_release.title}}</a></p>
           {% endif %}

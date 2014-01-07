@@ -32,18 +32,6 @@
           <br>
           <br>
           {{article.content|my_markdown}}
-          <!--
-          { % if article.albums %}
-          <p>
-            View the photo album{ % if article.albums.count > 1 %}s{ % endif %} related to this post:
-            <ul>
-            { % for album in article.albums.all %}
-              <li><a href="{ % url 'album' article.album.id %}">{ {album.title}}</a></li>
-            { % endfor %}
-            </ul>
-          </p>
-          { % endif %}
-          -->
           <p><a href="mailto:{{article.author_email}}?subject=Comments about press: {{article.title}}">Contact the Author.</a></p>
         </div>
       </div>

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '.grhu.org',
     '.grhu.ca',
+    'pbulsink.webfactional.com',
 ]
 
 
@@ -108,15 +109,17 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates'),]
 
 STATIC_URL = 'http://grhu.org/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "static"),
 )
+STATIC_ROOT = '/home/pbulsink/webapps/grhustatic/'
+
 MEDIA_URL = 'http://grhu.org/media/'
 MEDIA_ROOT = os.path.join(
     os.path.join(BASE_DIR, "media"),
 )
 
 # This forces or relaxes auto-now-add and auto-now in models:
-FORCE_AUTO_NOW=False
+FORCE_AUTO_NOW=True
 
 #Template Context Processor allows page to refer to own url.
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP

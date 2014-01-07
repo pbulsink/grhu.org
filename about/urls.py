@@ -11,7 +11,7 @@ urlpatterns = patterns('',
 #    url(r'^staff/$', views.list, name='about-list'),
 #    url(r'^staff/(?P<staff_id>[d]+)/$', views.staff),
     url(r'^vision/?$', RedirectView.as_view(url=reverse_lazy('vision')), name='about-vision'),
-    url(r'^mission/?$', RedirectView.as_view(url=reverse_lazy('project')), name='about-mission'),
+    url(r'^mission/?$', RedirectView.as_view(url=reverse_lazy('vision')), name='about-mission'),
 
 )
 
