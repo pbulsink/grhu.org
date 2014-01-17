@@ -1,6 +1,6 @@
 {% extends "__core.html" %}
 {% load markdowntag %}
-{% block Title %}{{article.title|title}} | Press{% endblock %}
+{% block Title %}{{article.title|title}} | Events{% endblock %}
 {% block Description %}{{article.byline}}{% endblock %}
 {% block Extra_Head %}
     <meta name="twitter:card" content="summary">
@@ -15,13 +15,12 @@
     <meta property="og:image" content="{{article.image.url}}">
     {% endif %}
 {% endblock %}
-{% block Navbar%}{% include "_navbar.html" with active_page='press' %}{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='events' %}{% endblock %}
 {% block body %}
-{% include "_sidebar.html" with active_page='press' %}
-      <div class="container">
-        <div class="well">
+{% include "_sidebar.html" with active_page='events' %}
+      <div class="well">
+        <div class="container">
           <h1>{{article.title|title}}</h1>
-          <h5>Posted {{article.pub_date|date:"M jS, Y" }}</h5>
           {% if article.image %}
           <figure style="float:right; max-width:40%;">
             <a href="{{ request.get_full_path }}"><img src="{{article.image.url}}" alt="{{article.tooltip}}" style="max-width:100%;"></a>
@@ -57,10 +56,12 @@
                 </span>
               </tr>
               {% endif %}
+              {% if article.time %}
               <tr>
                 <td>Time:</td>
                 <td><time itemprop="startDate" datetime="{{event.startdatetime}}">{{event.date|date:'l, F j, Y'}} {{event.start|date:'P'}}{% if event.end %}</time> - <time itemprop="endDate" datetime="{{event.enddatetime}}">{{event.end|date:'P'}}{% endif %}</time></td>
               </tr>
+              {% endif %}
               {% if event.price %}
               <tr>
                 <td>Price:</td>
