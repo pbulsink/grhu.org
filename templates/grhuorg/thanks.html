@@ -1,5 +1,5 @@
 {% extends "__core.html" %}
-{% include staticfiles %}
+{% load staticfiles %}
 {% block Title%}Donate{{ block.super }}{% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page='donate' %}{% endblock %}
 {% block body %}

@@ -35,16 +35,17 @@ urlpatterns = patterns('',
     url(r'^home/?$', 'grhuorg.views.home', name='home'),
     url(r'^terms/?$', 'grhuorg.views.terms', name='terms'),
     url(r'^privacy/?$', 'grhuorg.views.privacy', name='privacy'),
-    url(r'^donate/?$', 'grhuorg.views.donate', name='donate'),
     url(r'^donate/thanks/?$', 'grhuorg.views.donate', name='thanks'),
     url(r'^donate/cancel/?$', 'grhuorg.views.cancel', name='cancel'),
+    url(r'^donate/?$', 'grhuorg.views.donate', name='donate'),
     url(r'^contact/?$', 'grhuorg.views.contact', name='contact'),
     url(r'^contact-us/?$', 'grhuorg.views.contact', name='contact'),
     url(r'^vision/?$', 'grhuorg.views.vision', name='vision'),
     url(r'^sitemap/?$', 'grhuorg.views.sitemap', name='sitemap'),
     url(r'^mission/?$', 'grhuorg.views.mission', name='mission'),
     url(r'^helpout/?$', 'grhuorg.views.helpout', name='helpout'),
-    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
+        {'sitemaps': sitemaps})
 
     
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

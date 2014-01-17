@@ -1,5 +1,5 @@
 {% extends "__core.html" %}
-{% include staticfiles %}
+{% load staticfiles %}
 {% block Title%}Home{{ block.super }}{% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page='home' %}{% endblock %}
 {% block body %}
