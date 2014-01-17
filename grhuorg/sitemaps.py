@@ -26,6 +26,8 @@ class StaticViewSitemap(Sitemap):
                 'helpout',
                 'contact',
                 'donate',
+                'thanks',
+                'cancel',
                 ]
 
     def lastmod(self, item):

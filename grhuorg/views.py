@@ -32,4 +32,8 @@ def donate(request):
 def mission(request):
     return redirect('grhuorg.views.vision', permanent=True)
 
+def thanks(request):
+    return render(request, 'grhuorg/thanks.html')
 
+def cancel(request):
+    return render(request, 'grhuorg/cancel.html')

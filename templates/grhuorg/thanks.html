@@ -1,0 +1,28 @@
+{% extends "__core.html" %}
+{% include staticfiles %}
+{% block Title%}Donate{{ block.super }}{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='donate' %}{% endblock %}
+{% block body %}
+{% include "_sidebar.html" with active_page='donate' %}
+      <h1>Donation Successful</h1>
+      <div class="well" id="">
+        <h2>
+          Thank you for your donation!
+        </h2>
+        <p>
+          Thanks for your donation! Your gift to GRHU will be used to help support refugees living in dire situations.
+        </p>
+        <p>
+          If you dontated more than $10 you're eligible for a reciept for tax purposes. Please keep an eye on your mail for the reciept. If you didn't put in your mailing address but wish to have a tax reciept issued, please send us an email at <a href="mailto:donate@grhu.org">donate@grhu.org</a>.
+        </p>
+        <p>
+          If you'd like to help out some more by attending an event, find out when the next one is <a href="{% url 'event-index' %}">here</a>.
+        </p>
+        <img src="{% static "grhuorg/grhuthanks.jpg" %}" class="pull-left" alt="Thanks from GRHU">
+        <p>
+          From all of us at GRHU, thank you for your donation.
+        </p>
+      </div>
+{% include "_sidebar_close.html" %}
+{% endblock %}
+{% block Footer %}{% include "_footer.html" %}{% endblock %}

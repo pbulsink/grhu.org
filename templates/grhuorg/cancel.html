@@ -1,0 +1,28 @@
+{% extends "__core.html" %}
+{% block Title%}Donate{{ block.super }}{% endblock %}
+{% block Navbar%}{% include "_navbar.html" with active_page='donate' %}{% endblock %}
+{% block body %}
+{% include "_sidebar.html" with active_page='donate' %}
+      <h1>Support our Projects</h1>
+      <div class="well" id="">
+        <h2>
+          Giving to GRHU
+        </h2>
+        <p>
+          Thanks for your interest in donating to GRHU. If you're unable to donate through PayPal, you may want to consider donating
+          through CanadaHelps or another method. To use CanadaHelps, please <a href="https://www.canadahelps.org/CharityProfilePage.aspx?CharityID=d107128">visit our charity page</a> on their site.
+        </p>
+        <p>
+          For more information on other donation methods, please email <a href="mailto:donate@grhu.org">donate@grhu.org</a>. 
+        </p>
+        <p>
+          Any donation over $10 is eligible for a tax receipt from GRHU, but every donation helps with our projects!
+        </p>
+        <img src="{% static "grhuorg/grhuthanks.jpg" %}" class="pull-left" alt="Thanks from GRHU">
+        <p>
+          Thanks for your interest in GRHU!
+        </p>
+      </div>
+{% include "_sidebar_close.html" %}
+{% endblock %}
+{% block Footer %}{% include "_footer.html" %}{% endblock %}

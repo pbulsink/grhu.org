@@ -1,10 +1,11 @@
 {% extends "__core.html" %}
+{% include staticfiles %}
 {% block Title%}Home{{ block.super }}{% endblock %}
 {% block Navbar%}{% include "_navbar.html" with active_page='home' %}{% endblock %}
 {% block body %}
     <div class="container">
       <div class="hero-unit">
-        <h1><img src="../static/grhuorg/colour-logo-500.gif" class="pull-left" alt="GRHU Logo" height="200" width="200">Giving Refugees<br>Hope in Uganda</h1>
+        <h1><img src="{% static "grhuorg/colour-logo-500.gif" %}" class="pull-left" alt="GRHU Logo" height="200" width="200">Giving Refugees<br>Hope in Uganda</h1>
         <br>
         <div class="container">
           <p class="pull-left text-warning">GRHU is dedicated to help lift the refugees in Uganda out of poverty and give them hope for the future.<br></p>
